@@ -1,0 +1,19 @@
+*********************************************
+** Person who reviews branch integrates it **
+*********************************************
+
+How to name your branch:    sprint#_XX_task
+---------------------------------------------
+sprint# = the sprint number we are on
+XX = initials
+task = what you are doing with the branch
+
+Example:    sprint1_ES_addTest
+
+
+The circle of reviewing is...
+Evan -> Josh
+Josh -> Ian
+Ian -> David
+David -> Chelsea
+Chelsea -> Evan

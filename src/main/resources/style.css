@@ -1,0 +1,11 @@
+#skeleton{
+    -fx-background-color: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(241,241,241,1) 50%,rgba(225,225,225,1) 51%,rgba(246,246,246,1) 100%);
+}
+
+#graveyard{
+    -fx-background-color: linear-gradient(to bottom, rgba(83,83,83,1) 0%,rgba(71,71,71,1) 100%);
+
+    -fx-border-color: black;
+    -fx-border-width: 3px;
+
+}

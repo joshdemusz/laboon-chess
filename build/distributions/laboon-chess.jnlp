@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="laboon-chess.jnlp">
+  <information>
+    <title>laboon-chess</title>
+    <vendor>Unknown</vendor>
+    <description>laboon-chess</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="1-1.0-SNAPSHOT.jar" size="307866" download="null" />
+    <jar href="groovy-all-2.3.11.jar" size="7292935" download="null" />
+  </resources>
+<security>
+  <all-permissions/>
+</security>
+  <jfx:javafx-desc  width="1024" height="768" main-class="skeleton"  name="laboon-chess" />
+  <update check="background"/>
+</jnlp>
