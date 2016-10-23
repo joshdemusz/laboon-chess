@@ -1,9 +1,12 @@
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
+import javafx.stage.*;
+import javafx.event.ActionEvent;
 
 import java.io.IOException;
 
@@ -29,5 +32,19 @@ public class skeleton extends Application {
         primaryStage.show(); // Display the stage
 
         primaryStage.setMaximized(true);
+    }
+
+    @FXML
+    public void startNewGame(ActionEvent actionEvent) throws IOException
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Dialog_Windows/NewGameDialog.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setTitle("Start a New Game");
+        stage.setScene(new Scene(root1));
+        stage.show();
+
     }
 }

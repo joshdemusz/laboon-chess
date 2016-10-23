@@ -5,13 +5,13 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="skeleton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="785.0" prefWidth="1446.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="skeleton" fx:controller="skeleton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="785.0" prefWidth="1446.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox alignment="TOP_CENTER" layoutX="-2.0" layoutY="627.0" prefHeight="164.0" prefWidth="1450.0">
          <children>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button layoutX="18.0" layoutY="45.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="164.0" text="New Game">
+                  <Button onAction="#startNewGame" layoutX="18.0" layoutY="45.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="164.0" text="New Game">
                      <font>
                         <Font size="24.0" />
                      </font>
