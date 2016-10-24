@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="chessboard.chessTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-10-24T05:07:42" hostname="Joshs-MacBook-Pro-7.local" time="0.0">
+<testsuite name="chessboard.chessTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-10-24T21:09:50" hostname="fq2-wireless-pittnet-47-135.wireless.pitt.edu" time="0.0">
   <properties/>
   <testcase name="main" classname="chessboard.chessTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>

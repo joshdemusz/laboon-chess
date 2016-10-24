@@ -1,3 +1,4 @@
+import chessboard.Chessboard;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -28,10 +29,17 @@ public class NewGameController
         color = (String) chooseColor.getSelectionModel().getSelectedItem();
         difficulty = (String) chooseDifficulty.getSelectionModel().getSelectedItem();
 
-        // NOTE: send data back to Skeleton.java
+        if(color.equalsIgnoreCase("Black") || color.equalsIgnoreCase("White"))
+        {
+            if(difficulty.equalsIgnoreCase("Easy"))
+            {
 
-        Stage stage = (Stage) submitButton.getScene().getWindow();
-        stage.close();
+                Stage stage = (Stage) submitButton.getScene().getWindow();
+                stage.close();
+
+                //Chessboard game = new Chessboard(color, difficulty, first_or_second, 0);
+            }
+        }
     }
 
     @FXML
