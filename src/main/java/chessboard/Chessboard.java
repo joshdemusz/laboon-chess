@@ -3,11 +3,14 @@ package chessboard;/**
  */
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -15,9 +18,11 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 
-public class Chessboard
+public class Chessboard implements Initializable
 {
     private HashMap<Integer, String> piece_images;
 
@@ -32,17 +37,63 @@ public class Chessboard
     @FXML
     private GridPane virtual_graveyard_white;
 
-    /*public Chessboard(String color, String difficulty, boolean first_or_second, int new_or_load)
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
     {
-        if(new_or_load == 0)
+        /*virtual_board.setOnMouseClicked(new EventHandler<MouseEvent>(){
+
+            @Override
+            public void handle(MouseEvent e)
+            {
+                //virtual_board.getChildren().clear();
+                for( Node node: virtual_board.getChildren())
+                {
+                    if( node instanceof Label)
+                    {
+                        if( node.getBoundsInParent().contains(e.getSceneX(),  e.getSceneY()))
+                        {
+                            int row = GridPane.getRowIndex(node);
+                            int col = GridPane.getColumnIndex(node);
+
+                            //virtual_board.getChildren().clear();
+                            undrawPiece(row, col);
+
+                            //break;
+                        }
+                    }
+                }
+            }
+
+        });*/
+
+        virtual_board.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
         {
-            //newGame();
-        }
-        else
-        {
-            //loadGame();
-        }
-    }*/
+            @Override
+            public void handle(MouseEvent e)
+            {
+                //virtual_board.getChildren().clear();
+                for( Node node: virtual_board.getChildren())
+                {
+                    if( node instanceof Label)
+                    {
+                        if( node.getBoundsInParent().contains(e.getSceneX(),  e.getSceneY()))
+                        {
+                            int row = GridPane.getRowIndex(node);
+                            int col = GridPane.getColumnIndex(node);
+
+                            virtual_board.getChildren().clear();
+                            //undrawPiece(row, col);
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    public void initializeGame()
+    {
+
+    }
 
     public void newGame()
     {
@@ -232,11 +283,6 @@ public class Chessboard
         drawBoard();
     }
 
-    public void initializeGame()
-    {
-
-    }
-
     public void movePiece(Piece p, int x1, int y1, int x2, int y2)
     {
 
@@ -298,7 +344,7 @@ public class Chessboard
         virtual_board.add(new ImageView(piece_image), x, y);
     }
 
-    public void undrawPiece(Piece p, int x, int y)
+    public void undrawPiece(int x, int y)
     {
         Node rm = getNodeFromGridPane(virtual_board, x, y);
 

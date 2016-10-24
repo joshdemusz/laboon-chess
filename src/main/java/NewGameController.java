@@ -19,6 +19,9 @@ public class NewGameController
     @FXML
     private ChoiceBox chooseDifficulty;
 
+    @FXML
+    Chessboard board;
+
     private String color;
     private String difficulty;
     private boolean first_or_second;
