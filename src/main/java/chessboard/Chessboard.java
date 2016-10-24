@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -314,6 +315,17 @@ public class Chessboard
             }
         }
         return null;
+    }
+
+    @FXML
+    private int[] mouseEntered(MouseEvent e)
+    {
+        Node source = (Node)e.getSource() ;
+        Integer colIndex = GridPane.getColumnIndex(source);
+        Integer rowIndex = GridPane.getRowIndex(source);
+
+        int coords[] = {colIndex, rowIndex};
+        return coords;
     }
 
 }
