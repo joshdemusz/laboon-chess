@@ -324,7 +324,7 @@ public class Chessboard
         Integer colIndex = GridPane.getColumnIndex(source);
         Integer rowIndex = GridPane.getRowIndex(source);
 
-        int coords[] = {colIndex, rowIndex};
+        int coords[] = {rowIndex, colIndex};
         return coords;
     }
 
