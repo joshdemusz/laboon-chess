@@ -20,4 +20,44 @@ public class Piece
     {
 
     }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public boolean getIn_play() {
+        return in_play;
+    }
+
+    public void setIn_play(boolean in_play) {
+        this.in_play = in_play;
+    }
+
+    public int getX_coord() {
+        return x_coord;
+    }
+
+    public void setX_coord(int x_coord) {
+        this.x_coord = x_coord;
+    }
+
+    public int getY_coord() {
+        return y_coord;
+    }
+
+    public void setY_coord(int y_coord) {
+        this.y_coord = y_coord;
+    }
 }
