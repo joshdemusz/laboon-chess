@@ -3,6 +3,7 @@ package chessboard;/**
  */
 
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,15 +11,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
@@ -36,58 +40,728 @@ public class Chessboard implements Initializable
     private GridPane virtual_graveyard_black;
     @FXML
     private GridPane virtual_graveyard_white;
+    @FXML
+    private Pane cell0x0;
+    @FXML
+    private Pane cell0x1;
+    @FXML
+    private Pane cell0x2;
+    @FXML
+    private Pane cell0x3;
+    @FXML
+    private Pane cell0x4;
+    @FXML
+    private Pane cell0x5;
+    @FXML
+    private Pane cell0x6;
+    @FXML
+    private Pane cell0x7;
+    @FXML
+    private Pane cell1x0;
+    @FXML
+    private Pane cell1x1;
+    @FXML
+    private Pane cell1x2;
+    @FXML
+    private Pane cell1x3;
+    @FXML
+    private Pane cell1x4;
+    @FXML
+    private Pane cell1x5;
+    @FXML
+    private Pane cell1x6;
+    @FXML
+    private Pane cell1x7;
+    @FXML
+    private Pane cell2x0;
+    @FXML
+    private Pane cell2x1;
+    @FXML
+    private Pane cell2x2;
+    @FXML
+    private Pane cell2x3;
+    @FXML
+    private Pane cell2x4;
+    @FXML
+    private Pane cell2x5;
+    @FXML
+    private Pane cell2x6;
+    @FXML
+    private Pane cell2x7;
+    @FXML
+    private Pane cell3x0;
+    @FXML
+    private Pane cell3x1;
+    @FXML
+    private Pane cell3x2;
+    @FXML
+    private Pane cell3x3;
+    @FXML
+    private Pane cell3x4;
+    @FXML
+    private Pane cell3x5;
+    @FXML
+    private Pane cell3x6;
+    @FXML
+    private Pane cell3x7;
+    @FXML
+    private Pane cell4x0;
+    @FXML
+    private Pane cell4x1;
+    @FXML
+    private Pane cell4x2;
+    @FXML
+    private Pane cell4x3;
+    @FXML
+    private Pane cell4x4;
+    @FXML
+    private Pane cell4x5;
+    @FXML
+    private Pane cell4x6;
+    @FXML
+    private Pane cell4x7;
+    @FXML
+    private Pane cell5x0;
+    @FXML
+    private Pane cell5x1;
+    @FXML
+    private Pane cell5x2;
+    @FXML
+    private Pane cell5x3;
+    @FXML
+    private Pane cell5x4;
+    @FXML
+    private Pane cell5x5;
+    @FXML
+    private Pane cell5x6;
+    @FXML
+    private Pane cell5x7;
+    @FXML
+    private Pane cell6x0;
+    @FXML
+    private Pane cell6x1;
+    @FXML
+    private Pane cell6x2;
+    @FXML
+    private Pane cell6x3;
+    @FXML
+    private Pane cell6x4;
+    @FXML
+    private Pane cell6x5;
+    @FXML
+    private Pane cell6x6;
+    @FXML
+    private Pane cell6x7;
+    @FXML
+    private Pane cell7x0;
+    @FXML
+    private Pane cell7x1;
+    @FXML
+    private Pane cell7x2;
+    @FXML
+    private Pane cell7x3;
+    @FXML
+    private Pane cell7x4;
+    @FXML
+    private Pane cell7x5;
+    @FXML
+    private Pane cell7x6;
+    @FXML
+    private Pane cell7x7;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        /*virtual_board.setOnMouseClicked(new EventHandler<MouseEvent>(){
+        ArrayList<Pane> cells = new ArrayList<Pane>();
 
-            @Override
-            public void handle(MouseEvent e)
-            {
-                //virtual_board.getChildren().clear();
-                for( Node node: virtual_board.getChildren())
-                {
-                    if( node instanceof Label)
-                    {
-                        if( node.getBoundsInParent().contains(e.getSceneX(),  e.getSceneY()))
-                        {
-                            int row = GridPane.getRowIndex(node);
-                            int col = GridPane.getColumnIndex(node);
+        cells.add(cell0x0);
+        cells.add(cell0x1);
+        cells.add(cell0x2);
+        cells.add(cell0x3);
+        cells.add(cell0x4);
+        cells.add(cell0x5);
+        cells.add(cell0x6);
+        cells.add(cell0x7);
+        cells.add(cell1x0);
+        cells.add(cell1x1);
+        cells.add(cell1x2);
+        cells.add(cell1x3);
+        cells.add(cell1x4);
+        cells.add(cell1x5);
+        cells.add(cell1x6);
+        cells.add(cell1x7);
+        cells.add(cell2x0);
+        cells.add(cell2x1);
+        cells.add(cell2x2);
+        cells.add(cell2x3);
+        cells.add(cell2x4);
+        cells.add(cell2x5);
+        cells.add(cell2x6);
+        cells.add(cell2x7);
+        cells.add(cell3x0);
+        cells.add(cell3x1);
+        cells.add(cell3x2);
+        cells.add(cell3x3);
+        cells.add(cell3x4);
+        cells.add(cell3x5);
+        cells.add(cell3x6);
+        cells.add(cell3x7);
+        cells.add(cell4x0);
+        cells.add(cell4x1);
+        cells.add(cell4x2);
+        cells.add(cell4x3);
+        cells.add(cell4x4);
+        cells.add(cell4x5);
+        cells.add(cell4x6);
+        cells.add(cell4x7);
+        cells.add(cell5x0);
+        cells.add(cell5x1);
+        cells.add(cell5x2);
+        cells.add(cell5x3);
+        cells.add(cell5x4);
+        cells.add(cell5x5);
+        cells.add(cell5x6);
+        cells.add(cell5x7);
+        cells.add(cell6x0);
+        cells.add(cell6x1);
+        cells.add(cell6x2);
+        cells.add(cell6x3);
+        cells.add(cell6x4);
+        cells.add(cell6x5);
+        cells.add(cell6x6);
+        cells.add(cell6x7);
+        cells.add(cell7x0);
+        cells.add(cell7x1);
+        cells.add(cell7x2);
+        cells.add(cell7x3);
+        cells.add(cell7x4);
+        cells.add(cell7x5);
+        cells.add(cell7x6);
+        cells.add(cell7x7);
 
-                            //virtual_board.getChildren().clear();
-                            undrawPiece(row, col);
-
-                            //break;
-                        }
-                    }
-                }
-            }
-
-        });*/
-
-        virtual_board.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        cell0x0.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
         {
             @Override
             public void handle(MouseEvent e)
             {
-                //virtual_board.getChildren().clear();
-                for( Node node: virtual_board.getChildren())
-                {
-                    if( node instanceof Label)
-                    {
-                        if( node.getBoundsInParent().contains(e.getSceneX(),  e.getSceneY()))
-                        {
-                            int row = GridPane.getRowIndex(node);
-                            int col = GridPane.getColumnIndex(node);
-
-                            virtual_board.getChildren().clear();
-                            //undrawPiece(row, col);
-                        }
-                    }
-                }
+                clickSpace(0, 0);
             }
         });
+        cell0x1.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(0, 1);
+            }
+        });
+        cell0x2.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(0, 2);
+            }
+        });
+        cell0x3.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(0, 3);
+            }
+        });
+        cell0x4.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(0, 4);
+            }
+        });
+        cell0x5.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(0, 5);
+            }
+        });
+        cell0x6.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(0, 6);
+            }
+        });
+        cell0x7.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(0, 7);
+            }
+        });
+        cell1x0.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(1, 0);
+            }
+        });
+        cell1x1.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(1, 1);
+            }
+        });
+        cell1x2.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(1, 2);
+            }
+        });
+        cell1x3.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(1, 3);
+            }
+        });
+        cell1x4.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(1, 4);
+            }
+        });
+        cell1x5.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(1, 5);
+            }
+        });
+        cell1x6.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(1, 6);
+            }
+        });
+        cell1x7.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(1, 7);
+            }
+        });
+        cell2x0.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(2, 0);
+            }
+        });
+        cell2x1.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(2, 1);
+            }
+        });
+        cell2x2.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(2, 2);
+            }
+        });
+        cell2x3.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(2, 3);
+            }
+        });
+        cell2x4.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(2, 4);
+            }
+        });
+        cell2x5.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(2, 5);
+            }
+        });
+        cell2x6.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(2, 6);
+            }
+        });
+        cell2x7.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(2, 7);
+            }
+        });
+        cell3x0.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(3, 0);
+            }
+        });
+        cell3x1.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(3, 1);
+            }
+        });
+        cell3x2.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(3, 2);
+            }
+        });
+        cell3x3.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(3, 3);
+            }
+        });
+        cell3x4.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(3, 4);
+            }
+        });
+        cell3x5.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(3, 5);
+            }
+        });
+        cell3x6.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(3, 6);
+            }
+        });
+        cell3x7.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(3, 7);
+            }
+        });
+        cell4x0.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(4, 0);
+            }
+        });
+        cell4x1.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(4, 1);
+            }
+        });
+        cell4x2.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(4, 2);
+            }
+        });
+        cell4x3.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(4, 3);
+            }
+        });
+        cell4x4.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(4, 4);
+            }
+        });
+        cell4x5.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(4, 5);
+            }
+        });
+        cell4x6.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(4, 6);
+            }
+        });
+        cell4x7.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(4, 7);
+            }
+        });
+        cell5x0.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(5, 0);
+            }
+        });
+        cell5x1.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(5, 1);
+            }
+        });
+        cell5x2.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(5, 2);
+            }
+        });
+        cell5x3.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(5, 3);
+            }
+        });
+        cell5x4.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(5, 4);
+            }
+        });
+        cell5x5.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(5, 5);
+            }
+        });
+        cell5x6.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(5, 6);
+            }
+        });
+        cell5x7.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(5, 7);
+            }
+        });
+        cell6x0.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(6, 0);
+            }
+        });
+        cell6x1.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(6, 1);
+            }
+        });
+        cell6x2.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(6, 2);
+            }
+        });
+        cell6x3.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(6, 3);
+            }
+        });
+        cell6x4.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(6, 4);
+            }
+        });
+        cell6x5.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(6, 5);
+            }
+        });
+        cell6x6.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(6, 6);
+            }
+        });
+        cell6x7.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(6, 7);
+            }
+        });
+        cell7x0.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(7, 0);
+            }
+        });
+        cell7x1.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(7, 1);
+            }
+        });
+        cell7x2.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(7, 2);
+            }
+        });
+        cell7x3.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(7, 3);
+            }
+        });
+        cell7x4.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(7, 4);
+            }
+        });
+        cell7x5.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(7, 5);
+            }
+        });
+        cell7x6.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(7, 6);
+            }
+        });
+        cell7x7.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                clickSpace(7, 7);
+            }
+        });
+
+        /*cell0x0.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
+        {
+            @Override
+            public void handle(MouseEvent e)
+            {
+                        //virtual_board.getChildren().clear();
+                        undrawPiece(0, 0);
+            }
+        });*/
     }
 
     public void initializeGame()
@@ -328,8 +1002,9 @@ public class Chessboard implements Initializable
         {
             for(int y = 0; y < 8; y++)
             {
-                Piece curr = logical_board[x][y];
-                drawPiece(curr, x, y);
+                // Flip x/y because rows and cols are flipped in GridPane
+                Piece curr = logical_board[y][x];
+                drawPiece(curr, y, x);
             }
         }
     }
@@ -349,6 +1024,9 @@ public class Chessboard implements Initializable
         Node rm = getNodeFromGridPane(virtual_board, x, y);
 
         virtual_board.getChildren().removeAll(rm);
+
+        virtual_board.setVisible(false);
+        virtual_board.setVisible(true);
     }
 
     private Node getNodeFromGridPane(GridPane gridPane, int col, int row)
@@ -363,15 +1041,10 @@ public class Chessboard implements Initializable
         return null;
     }
 
-    @FXML
-    private int[] mouseEntered(MouseEvent e)
+    public void clickSpace(int x, int y)
     {
-        Node source = (Node)e.getSource() ;
-        Integer colIndex = GridPane.getColumnIndex(source);
-        Integer rowIndex = GridPane.getRowIndex(source);
-
-        int coords[] = {rowIndex, colIndex};
-        return coords;
+        // Swap x/y since rows and columns are flipped in GridPane
+        undrawPiece(y, x);
     }
 
 }
