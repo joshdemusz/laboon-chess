@@ -894,7 +894,7 @@ public class Chessboard implements Initializable
     }
 
     // Replace a piece when one piece overtakes another
-    public void replacePiece(Piece curr, int x1, int y1, int x2, int y2)
+    public void replacePiece(Piece old, Piece curr, int x1, int y1, int x2, int y2)
     {
 			undrawPiece(y1, x1);
 			undrawPiece(y2, x2);
@@ -1022,7 +1022,7 @@ public class Chessboard implements Initializable
 					int initY = midMove[1];
 					Piece ourPiece = logical_board[initX][initY];
 					Piece therePiece = logical_board[x][y];
-					replacePiece(ourPiece, initX, initY, x, y);
+					replacePiece(therePiece, ourPiece, initX, initY, x, y);
 				}
     }
 
