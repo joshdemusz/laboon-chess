@@ -1,5 +1,6 @@
 # ignore the build folder
 build/
+out/
 
 # ignore some IDE fields
 *.iml
