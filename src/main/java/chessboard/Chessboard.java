@@ -6,7 +6,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -768,11 +767,6 @@ public class Chessboard implements Initializable
 
     public void initializeGame(String c, String d, boolean first_or_second, boolean new_game)
     {
-        /*Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information Dialog");
-        alert.setContentText(c+" "+d+" "+first_or_second+" "+new_game);
-        alert.showAndWait();*/
-
         setColor(c);
         setDifficulty(d);
         setUsers_turn(!first_or_second);
@@ -1004,7 +998,6 @@ public class Chessboard implements Initializable
         piece_images.put(11, "src/main/resources/Chess_Board/Chess_Pieces/white-king.png");
         piece_images.put(12, "src/main/resources/Chess_Board/Chess_Pieces/white_pawn.png");
 
-
     }
 
     public void drawBoard()
@@ -1032,24 +1025,11 @@ public class Chessboard implements Initializable
         // Get image based from HashMap
         String image_url = piece_images.get(p.getID());
 
-        //image_url = "src/main/resources/Chess_Board/Chess_Pieces/black_king.png";
-        /*image_url = "file:/src/main/resources/Chess_Board/Chess_Pieces/black_king.png";
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information Dialog");
-        alert.setContentText(image_url);
-
-        //alert.setGraphic(new ImageView(piece_image));
-
-        alert.showAndWait();
-
-        Image piece_image = new Image("file:black_king.png");*/
-
         File file = new File(image_url);
         Image image = new Image(file.toURI().toString());
         ImageView iv = new ImageView(image);
 
-        Label l = new Label("AAAAAAAAAAA");
+        iv.setMouseTransparent(true);
 
         // Add image to grid
         virtual_board.add(iv, x, y);
@@ -1059,10 +1039,7 @@ public class Chessboard implements Initializable
     {
         Node rm = getNodeFromGridPane(virtual_board, x, y);
 
-        virtual_board.getChildren().removeAll(rm);
-
-        virtual_board.setVisible(false);
-        virtual_board.setVisible(true);
+        //virtual_board.getChildren().removeAll(rm);
     }
 
     private Node getNodeFromGridPane(GridPane gridPane, int col, int row)
