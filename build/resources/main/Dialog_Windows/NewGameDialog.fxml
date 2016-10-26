@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.collections.*?>
 
-<AnchorPane fx:controller="NewGameController" prefHeight="148.0" prefWidth="394.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="148.0" prefWidth="394.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NewGameController">
    <children>
       <VBox prefHeight="174.0" prefWidth="394.0">
          <children>
             <Pane prefHeight="41.0" prefWidth="394.0">
                <children>
                   <Label layoutX="19.0" layoutY="-1.0" prefHeight="39.0" prefWidth="103.0" text="Color:" />
-                  <ChoiceBox fx:id="chooseColor" value="Black" layoutX="122.0" layoutY="5.0" prefWidth="150.0">
+                  <ChoiceBox fx:id="chooseColor" layoutX="122.0" layoutY="5.0" prefWidth="150.0" value="Black">
                      <items>
                         <FXCollections fx:factory="observableArrayList">
                            <String fx:value="Black" />
@@ -24,7 +26,7 @@
             </Pane>
             <Pane prefHeight="44.0" prefWidth="394.0">
                <children>
-                  <ChoiceBox fx:id="chooseDifficulty" value="Easy" layoutX="122.0" layoutY="9.0" prefWidth="150.0">
+                  <ChoiceBox fx:id="chooseDifficulty" layoutX="122.0" layoutY="9.0" prefWidth="150.0" value="Easy">
                      <items>
                         <FXCollections fx:factory="observableArrayList">
                            <String fx:value="Easy" />
@@ -36,7 +38,12 @@
             </Pane>
             <Pane prefHeight="54.0" prefWidth="394.0">
                <children>
-                  <Label layoutX="17.0" layoutY="13.0" prefHeight="17.0" prefWidth="218.0" text="Going First: " />
+                  <Label layoutX="17.0" layoutY="13.0" prefHeight="17.0" prefWidth="85.0" text="Going First: " />
+                  <Label fx:id="startingPlayer" layoutX="130.0" layoutY="10.0" prefHeight="17.0" prefWidth="85.0" textFill="#69f518">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
             <Pane prefHeight="46.0" prefWidth="394.0">
@@ -45,12 +52,12 @@
                      <children>
                         <Pane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="submitButton" onAction="#submitButtonAction" layoutX="50.0" layoutY="10.0" mnemonicParsing="false" text="Start" />
+                              <Button fx:id="submitButton" layoutX="50.0" layoutY="10.0" mnemonicParsing="false" onAction="#submitButtonAction" text="Start" />
                            </children>
                         </Pane>
                         <Pane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="cancelButton" onAction="#cancelButtonAction" cancelButton="true" defaultButton="true" layoutX="39.0" layoutY="10.0" mnemonicParsing="false" text="Cancel" />
+                              <Button fx:id="cancelButton" cancelButton="true" defaultButton="true" layoutX="39.0" layoutY="10.0" mnemonicParsing="false" onAction="#cancelButtonAction" text="Cancel" />
                            </children>
                         </Pane>
                      </children>

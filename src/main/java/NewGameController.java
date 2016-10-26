@@ -1,15 +1,19 @@
 import chessboard.Chessboard;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Created by joshdemusz on 10/23/16.
  */
-public class NewGameController
+public class NewGameController implements Initializable
 {
     private skeleton main;
 
@@ -21,10 +25,29 @@ public class NewGameController
     private ChoiceBox chooseColor;
     @FXML
     private ChoiceBox chooseDifficulty;
+    @FXML
+    private Label startingPlayer;
 
     private String color;
     private String difficulty;
     private boolean first_or_second;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources)
+    {
+        if(Math.random() < 0.5)
+        {
+            // Player goes first
+            first_or_second = true;
+            startingPlayer.setText("User");
+        }
+        else
+        {
+            // PC goes first
+            first_or_second = false;
+            startingPlayer.setText("PC");
+        }
+    }
 
     @FXML
     private void submitButtonAction() throws IOException
@@ -36,7 +59,7 @@ public class NewGameController
         {
             if(difficulty.equalsIgnoreCase("Easy"))
             {
-                first_or_second = true;
+                //first_or_second = true;
 
                 // Initialize a new game in Chessboard.java
                 Chessboard.getInstance().initializeGame(color, difficulty, first_or_second, true);
