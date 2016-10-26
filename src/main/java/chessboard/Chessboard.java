@@ -896,7 +896,13 @@ public class Chessboard implements Initializable
     // Replace a piece when one piece overtakes another
     public void replacePiece(Piece old, Piece curr, int x1, int y1, int x2, int y2)
     {
-
+			undrawPiece(y1, x1);
+			undrawPiece(y2, x2);
+			drawPiece(curr, y2, x2);
+			midMove[0] = -1;
+			midMove[1] = -1;
+			logical_board[x2][y2] = logical_board[x1][y1];
+			logical_board[x1][y1] = null;
     }
 
     public void removePiece(Piece p, int x, int y)
@@ -1005,10 +1011,18 @@ public class Chessboard implements Initializable
 						Piece toMove = logical_board[initX][initY];
 						movePiece(toMove, initX, initY, x, y);
 					}
-				}else{
+				}else if(midMove[0] == -1 || (logical_board[midMove[0]][midMove[1]].getColor() == logical_board[x][y].getColor())){
+					//clicked on a piece, and haven't clicked on anything else
 					//piece to move
 					midMove[0] = x;
 					midMove[1] = y;
+				}else{
+					//trying to overtake other players piece
+					int initX = midMove[0];
+					int initY = midMove[1];
+					Piece ourPiece = logical_board[initX][initY];
+					Piece therePiece = logical_board[x][y];
+					replacePiece(therePiece, ourPiece, initX, initY, x, y);
 				}
     }
 
