@@ -893,6 +893,9 @@ public class Chessboard implements Initializable
 			drawPiece(p, y2, x2);
 			midMove[0] = -1;
 			midMove[1] = -1;
+			logical_board[x2][y2] = logical_board[x1][y1];
+			logical_board[x1][y1] = null;
+			
     }
 
     // Replace a piece when one piece overtakes another
