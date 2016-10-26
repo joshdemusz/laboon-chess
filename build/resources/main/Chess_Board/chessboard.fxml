@@ -34,148 +34,36 @@
                     </rowConstraints>
                      <children>
                         <Pane fx:id="cell0x0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView layoutY="-1.0">
-                                 <image>
-                                    <Image url="@Chess_Pieces/black_rook.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell0x1" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView layoutY="-1.0">
-                                 <image>
-                                    <Image url="@Chess_Pieces/black_knight.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell0x2" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView layoutY="-1.0">
-                                 <image>
-                                    <Image url="@Chess_Pieces/black_bishop.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell0x3" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView>
-                                 <image>
-                                    <Image url="@Chess_Pieces/black_queen.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell0x4" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView>
-                                 <image>
-                                    <Image url="@Chess_Pieces/black_king.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell0x5" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView layoutY="-1.0">
-                                 <image>
-                                    <Image url="@Chess_Pieces/black_bishop.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell0x6" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView layoutY="-1.0">
-                                 <image>
-                                    <Image url="@Chess_Pieces/black_knight.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell0x7" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView layoutY="-1.0">
-                                 <image>
-                                    <Image url="@Chess_Pieces/black_rook.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell1x0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView layoutY="-1.0">
-                                 <image>
-                                    <Image url="@Chess_Pieces/black_pawn.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell1x1" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView layoutY="-1.0">
-                                 <image>
-                                    <Image url="@Chess_Pieces/black_pawn.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell1x2" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView layoutY="-1.0">
-                                 <image>
-                                    <Image url="@Chess_Pieces/black_pawn.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell1x3" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView layoutY="-1.0">
-                                 <image>
-                                    <Image url="@Chess_Pieces/black_pawn.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell1x4" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView layoutY="-1.0">
-                                 <image>
-                                    <Image url="@Chess_Pieces/black_pawn.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell1x5" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView layoutY="-1.0">
-                                 <image>
-                                    <Image url="@Chess_Pieces/black_pawn.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell1x6" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView layoutY="-1.0">
-                                 <image>
-                                    <Image url="@Chess_Pieces/black_pawn.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell1x7" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView layoutY="-1.0">
-                                 <image>
-                                    <Image url="@Chess_Pieces/black_pawn.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell2x0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                         <Pane fx:id="cell2x1" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
@@ -210,148 +98,36 @@
                         <Pane fx:id="cell5x6" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
                         <Pane fx:id="cell5x7" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="CENTER" />
                         <Pane fx:id="cell6x0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView layoutY="-2.0">
-                                 <image>
-                                    <Image url="@Chess_Pieces/white_pawn.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell6x1" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView layoutY="-2.0">
-                                 <image>
-                                    <Image url="@Chess_Pieces/white_pawn.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell6x2" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView layoutY="-2.0">
-                                 <image>
-                                    <Image url="@Chess_Pieces/white_pawn.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell6x3" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView layoutY="-2.0">
-                                 <image>
-                                    <Image url="@Chess_Pieces/white_pawn.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell6x4" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView>
-                                 <image>
-                                    <Image url="@Chess_Pieces/white_pawn.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell6x5" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView layoutY="-2.0">
-                                 <image>
-                                    <Image url="@Chess_Pieces/white_pawn.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell6x6" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView layoutY="-2.0">
-                                 <image>
-                                    <Image url="@Chess_Pieces/white_pawn.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell6x7" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView layoutY="-2.0">
-                                 <image>
-                                    <Image url="@Chess_Pieces/white_pawn.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell7x0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView>
-                                 <image>
-                                    <Image url="@Chess_Pieces/white_rook.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell7x1" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView>
-                                 <image>
-                                    <Image url="@Chess_Pieces/white_knight.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell7x2" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView layoutY="-2.0">
-                                 <image>
-                                    <Image url="@Chess_Pieces/white_bishop.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell7x3" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView>
-                                 <image>
-                                    <Image url="@Chess_Pieces/white_queen.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell7x4" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView>
-                                 <image>
-                                    <Image url="@Chess_Pieces/white-king.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell7x5" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView>
-                                 <image>
-                                    <Image url="@Chess_Pieces/white_bishop.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell7x6" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView>
-                                 <image>
-                                    <Image url="@Chess_Pieces/white_knight.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                         <Pane fx:id="cell7x7" prefHeight="0.0" prefWidth="186.0" GridPane.columnIndex="7" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-                           <children>
-                              <ImageView>
-                                 <image>
-                                    <Image url="@Chess_Pieces/white_rook.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
                         </Pane>
                      </children>
                      <padding>

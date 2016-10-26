@@ -1,17 +1,17 @@
-
 import javafx.application.Application;
-import javafx.event.EventHandler;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.*;
-import javafx.event.ActionEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
-public class skeleton extends Application {
-
+public class skeleton extends Application
+{
     public static void main(String[] args) {
         launch(args);
     }
@@ -27,6 +27,7 @@ public class skeleton extends Application {
         // Create a button and place it in the scene
         Scene scene = new Scene(root, 1200, 1200);
         primaryStage.setTitle("laboon-chess"); // Set the stage title
+
         primaryStage.setScene(scene); // Place the scene in the stage
 
         primaryStage.show(); // Display the stage

@@ -2,15 +2,10 @@ package chessboard;/**
  * Created by eksheen on 10/2/16.
  */
 
-import javafx.application.Application;
-import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -18,16 +13,22 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+
 public class Chessboard implements Initializable
 {
+    
+    // Game data
+    private String color;
+    private String difficulty;
+    private boolean users_turn;
+
     private HashMap<Integer, String> piece_images;
 
     private Piece logical_board[][];
@@ -169,10 +170,12 @@ public class Chessboard implements Initializable
     @FXML
     private Pane cell7x7;
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        // Create HashMap of piece ID --> image url
+        initializePieceImages();
+
         ArrayList<Pane> cells = new ArrayList<Pane>();
 
         cells.add(cell0x0);
@@ -764,27 +767,35 @@ public class Chessboard implements Initializable
         });*/
     }
 
-    public void initializeGame()
+    public void initializeGame(String c, String d, boolean first_or_second, boolean new_game)
     {
+        /*Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setContentText(c+" "+d+" "+first_or_second+" "+new_game);
+        alert.showAndWait();*/
 
-    }
+        setColor(c);
+        setDifficulty(d);
+        setUsers_turn(!first_or_second);
 
-    public void newGame()
-    {
-        initializePieceImages();
-
-        // Set the state of a NEW GAME
-
-        // User's color
-        String user_color = "";
-
-        // Piece locations in board
-
-        // Turn of current player
-
-        // Difficulty (?)
 
         // Anything else ?
+
+        if(new_game)
+        {
+            newGame();
+        }
+        else
+        {
+            loadGame();
+        }
+    }
+
+    // Set the state of a NEW GAME
+    public void newGame()
+    {
+        // User's color
+        String user_color = getColor();
 
         // Set up the game
         logical_board = new Piece[8][8];
@@ -807,8 +818,8 @@ public class Chessboard implements Initializable
             Piece b_pawn7 = new Piece(6, "Black");
             Piece b_pawn8 = new Piece(6, "Black");
 
-            logical_board[7][3] = b_king;
-            logical_board[7][4] = b_queen;
+            logical_board[7][4] = b_king;
+            logical_board[7][3] = b_queen;
             logical_board[7][0] = b_rook1;
             logical_board[7][7] = b_rook2;
             logical_board[7][2] = b_bishop1;
@@ -841,8 +852,8 @@ public class Chessboard implements Initializable
             Piece w_pawn7 = new Piece(12, "White");
             Piece w_pawn8 = new Piece(12, "White");
 
-            logical_board[0][3] = w_king;
-            logical_board[0][4] = w_queen;
+            logical_board[0][4] = w_king;
+            logical_board[0][3] = w_queen;
             logical_board[0][0] = w_rook1;
             logical_board[0][7] = w_rook2;
             logical_board[0][2] = w_bishop1;
@@ -860,25 +871,25 @@ public class Chessboard implements Initializable
         }
         else if(user_color.equalsIgnoreCase("White"))
         {
-            Piece w_king = new Piece(1, "White");
-            Piece w_queen = new Piece(2, "White");
-            Piece w_rook1 = new Piece(3, "White");
-            Piece w_rook2 = new Piece(3, "White");
-            Piece w_bishop1 = new Piece(4, "White");
-            Piece w_bishop2 = new Piece(4, "White");
-            Piece w_knight1 = new Piece(5, "White");
-            Piece w_knight2 = new Piece(5, "White");
-            Piece w_pawn1 = new Piece(6, "White");
-            Piece w_pawn2 = new Piece(6, "White");
-            Piece w_pawn3 = new Piece(6, "White");
-            Piece w_pawn4 = new Piece(6, "White");
-            Piece w_pawn5 = new Piece(6, "White");
-            Piece w_pawn6 = new Piece(6, "White");
-            Piece w_pawn7 = new Piece(6, "White");
-            Piece w_pawn8 = new Piece(6, "White");
+            Piece w_king = new Piece(7, "White");
+            Piece w_queen = new Piece(8, "White");
+            Piece w_rook1 = new Piece(9, "White");
+            Piece w_rook2 = new Piece(9, "White");
+            Piece w_bishop1 = new Piece(10, "White");
+            Piece w_bishop2 = new Piece(10, "White");
+            Piece w_knight1 = new Piece(11, "White");
+            Piece w_knight2 = new Piece(11, "White");
+            Piece w_pawn1 = new Piece(12, "White");
+            Piece w_pawn2 = new Piece(12, "White");
+            Piece w_pawn3 = new Piece(12, "White");
+            Piece w_pawn4 = new Piece(12, "White");
+            Piece w_pawn5 = new Piece(12, "White");
+            Piece w_pawn6 = new Piece(12, "White");
+            Piece w_pawn7 = new Piece(12, "White");
+            Piece w_pawn8 = new Piece(12, "White");
 
-            logical_board[7][3] = w_king;
-            logical_board[7][4] = w_queen;
+            logical_board[7][4] = w_king;
+            logical_board[7][3] = w_queen;
             logical_board[7][0] = w_rook1;
             logical_board[7][7] = w_rook2;
             logical_board[7][2] = w_bishop1;
@@ -894,25 +905,25 @@ public class Chessboard implements Initializable
             logical_board[6][6] = w_pawn7;
             logical_board[6][7] = w_pawn8;
 
-            Piece b_king = new Piece(7, "Black");
-            Piece b_queen = new Piece(8, "Black");
-            Piece b_rook1 = new Piece(9, "Black");
-            Piece b_rook2 = new Piece(9, "Black");
-            Piece b_bishop1 = new Piece(10, "Black");
-            Piece b_bishop2 = new Piece(10, "Black");
-            Piece b_knight1 = new Piece(11, "Black");
-            Piece b_knight2 = new Piece(11, "Black");
-            Piece b_pawn1 = new Piece(12, "Black");
-            Piece b_pawn2 = new Piece(12, "Black");
-            Piece b_pawn3 = new Piece(12, "Black");
-            Piece b_pawn4 = new Piece(12, "Black");
-            Piece b_pawn5 = new Piece(12, "Black");
-            Piece b_pawn6 = new Piece(12, "Black");
-            Piece b_pawn7 = new Piece(12, "Black");
-            Piece b_pawn8 = new Piece(12, "Black");
+            Piece b_king = new Piece(1, "Black");
+            Piece b_queen = new Piece(2, "Black");
+            Piece b_rook1 = new Piece(3, "Black");
+            Piece b_rook2 = new Piece(3, "Black");
+            Piece b_bishop1 = new Piece(4, "Black");
+            Piece b_bishop2 = new Piece(4, "Black");
+            Piece b_knight1 = new Piece(5, "Black");
+            Piece b_knight2 = new Piece(5, "Black");
+            Piece b_pawn1 = new Piece(6, "Black");
+            Piece b_pawn2 = new Piece(6, "Black");
+            Piece b_pawn3 = new Piece(6, "Black");
+            Piece b_pawn4 = new Piece(6, "Black");
+            Piece b_pawn5 = new Piece(6, "Black");
+            Piece b_pawn6 = new Piece(6, "Black");
+            Piece b_pawn7 = new Piece(6, "Black");
+            Piece b_pawn8 = new Piece(6, "Black");
 
-            logical_board[0][3] = b_king;
-            logical_board[0][4] = b_queen;
+            logical_board[0][4] = b_king;
+            logical_board[0][3] = b_queen;
             logical_board[0][0] = b_rook1;
             logical_board[0][7] = b_rook2;
             logical_board[0][2] = b_bishop1;
@@ -936,8 +947,6 @@ public class Chessboard implements Initializable
 
     public void loadGame()
     {
-        initializePieceImages();
-
         // Set the state of a LOADED GAME
 
         // User's color
@@ -981,19 +990,21 @@ public class Chessboard implements Initializable
     {
         piece_images = new HashMap<Integer, String>();
 
-        piece_images.put(1, "@Chess_Pieces/black_king.png");
-        piece_images.put(2, "@Chess_Pieces/black_queen.png");
-        piece_images.put(3, "@Chess_Pieces/black_rook.png");
-        piece_images.put(4, "@Chess_Pieces/black_bishop.png");
-        piece_images.put(5, "@Chess_Pieces/black_knight.png");
-        piece_images.put(6, "@Chess_Pieces/black_pawn.png");
+        piece_images.put(1, "/Users/joshdemusz/Documents/workspace/CS1530/Sprint3/laboon-chess/src/main/resources/Chess_Board/Chess_Pieces/black_king.png");
+        piece_images.put(2, "/Users/joshdemusz/Documents/workspace/CS1530/Sprint3/laboon-chess/src/main/resources/Chess_Board/Chess_Pieces/black_queen.png");
+        piece_images.put(3, "/Users/joshdemusz/Documents/workspace/CS1530/Sprint3/laboon-chess/src/main/resources/Chess_Board/Chess_Pieces/black_rook.png");
+        piece_images.put(4, "/Users/joshdemusz/Documents/workspace/CS1530/Sprint3/laboon-chess/src/main/resources/Chess_Board/Chess_Pieces/black_bishop.png");
+        piece_images.put(5, "/Users/joshdemusz/Documents/workspace/CS1530/Sprint3/laboon-chess/src/main/resources/Chess_Board/Chess_Pieces/black_knight.png");
+        piece_images.put(6, "/Users/joshdemusz/Documents/workspace/CS1530/Sprint3/laboon-chess/src/main/java/chessboard/Chess_Pieces/black_pawn.png");
 
-        piece_images.put(7, "@Chess_Pieces/white-king.png");
-        piece_images.put(8, "@Chess_Pieces/white_queen.png");
-        piece_images.put(9, "@Chess_Pieces/white_rook.png");
-        piece_images.put(10, "@Chess_Pieces/white_bishop.png");
-        piece_images.put(11, "@Chess_Pieces/white_knight.png");
-        piece_images.put(12, "@Chess_Pieces/white_pawn.png");
+        piece_images.put(7, "/Users/joshdemusz/Documents/workspace/CS1530/Sprint3/laboon-chess/src/main/java/chessboard/Chess_Pieces/white-king.png");
+        piece_images.put(8, "/Users/joshdemusz/Documents/workspace/CS1530/Sprint3/laboon-chess/src/main/java/chessboard/Chess_Pieces/white_queen.png");
+        piece_images.put(9, "/Users/joshdemusz/Documents/workspace/CS1530/Sprint3/laboon-chess/src/main/java/chessboard/Chess_Pieces/white_rook.png");
+        piece_images.put(10, "/Users/joshdemusz/Documents/workspace/CS1530/Sprint3/laboon-chess/src/main/java/chessboard/Chess_Pieces/white_bishop.png");
+        piece_images.put(11, "/Users/joshdemusz/Documents/workspace/CS1530/Sprint3/laboon-chess/src/main/java/chessboard/Chess_Pieces/white_knight.png");
+        piece_images.put(12, "/Users/joshdemusz/Documents/workspace/CS1530/Sprint3/laboon-chess/src/main/java/chessboard/Chess_Pieces/white_pawn.png");
+
+
     }
 
     public void drawBoard()
@@ -1003,8 +1014,15 @@ public class Chessboard implements Initializable
             for(int y = 0; y < 8; y++)
             {
                 // Flip x/y because rows and cols are flipped in GridPane
-                Piece curr = logical_board[y][x];
-                drawPiece(curr, y, x);
+                Piece curr = logical_board[x][y];
+
+                if(curr != null)
+                {
+                    // Clear cell before adding a new piece
+                    undrawPiece(y, x);
+                    // Draw the current piece
+                    drawPiece(curr, y, x);
+                }
             }
         }
     }
@@ -1013,10 +1031,28 @@ public class Chessboard implements Initializable
     {
         // Get image based from HashMap
         String image_url = piece_images.get(p.getID());
-        Image piece_image = new Image(image_url);
+
+        //image_url = "src/main/resources/Chess_Board/Chess_Pieces/black_king.png";
+        /*image_url = "file:/src/main/resources/Chess_Board/Chess_Pieces/black_king.png";
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setContentText(image_url);
+
+        //alert.setGraphic(new ImageView(piece_image));
+
+        alert.showAndWait();
+
+        Image piece_image = new Image("file:black_king.png");*/
+
+        File file = new File(image_url);
+        Image image = new Image(file.toURI().toString());
+        ImageView iv = new ImageView(image);
+
+        Label l = new Label("AAAAAAAAAAA");
 
         // Add image to grid
-        virtual_board.add(new ImageView(piece_image), x, y);
+        virtual_board.add(iv, x, y);
     }
 
     public void undrawPiece(int x, int y)
@@ -1044,7 +1080,44 @@ public class Chessboard implements Initializable
     public void clickSpace(int x, int y)
     {
         // Swap x/y since rows and columns are flipped in GridPane
-        undrawPiece(y, x);
+        // undrawPiece(y, x);
+        Piece p = new Piece(1, "Black");
+
+        drawPiece(p, y, x);
     }
 
+    //*************************************** GETTERS AND SETTERS *******************************************
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public boolean isUsers_turn() {
+        return users_turn;
+    }
+
+    public void setUsers_turn(boolean users_turn) {
+        this.users_turn = users_turn;
+    }
+
+    // The following allows NewGameController.java to access Chessboard.java and call its methods (in particular initializeGame())
+    private static Chessboard instance;
+    public Chessboard() {
+        instance = this;
+    }
+    // static method to get instance of view
+    public static Chessboard getInstance() {
+        return instance;
+    }
 }

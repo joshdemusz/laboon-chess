@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="chessboard.chessTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-10-25T03:34:52" hostname="Joshs-MacBook-Pro-9.local" time="0.0">
+<testsuite name="chessboard.chessTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-10-25T22:41:27" hostname="Joshs-MacBook-Pro-9.local" time="0.001">
   <properties/>
-  <testcase name="main" classname="chessboard.chessTest" time="0.0"/>
+  <testcase name="main" classname="chessboard.chessTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
