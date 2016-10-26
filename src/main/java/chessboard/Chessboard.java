@@ -989,19 +989,19 @@ public class Chessboard implements Initializable
     {
         piece_images = new HashMap<Integer, String>();
 
-        piece_images.put(1, "/Users/joshdemusz/Documents/workspace/CS1530/Sprint3/laboon-chess/src/main/resources/Chess_Board/Chess_Pieces/black_king.png");
-        piece_images.put(2, "/Users/joshdemusz/Documents/workspace/CS1530/Sprint3/laboon-chess/src/main/resources/Chess_Board/Chess_Pieces/black_queen.png");
-        piece_images.put(3, "/Users/joshdemusz/Documents/workspace/CS1530/Sprint3/laboon-chess/src/main/resources/Chess_Board/Chess_Pieces/black_rook.png");
-        piece_images.put(4, "/Users/joshdemusz/Documents/workspace/CS1530/Sprint3/laboon-chess/src/main/resources/Chess_Board/Chess_Pieces/black_bishop.png");
-        piece_images.put(5, "/Users/joshdemusz/Documents/workspace/CS1530/Sprint3/laboon-chess/src/main/resources/Chess_Board/Chess_Pieces/black_knight.png");
-        piece_images.put(6, "/Users/joshdemusz/Documents/workspace/CS1530/Sprint3/laboon-chess/src/main/resources/Chess_Board/Chess_Pieces/black_pawn.png");
+        piece_images.put(1, "src/main/resources/Chess_Board/Chess_Pieces/black_king.png");
+        piece_images.put(2, "src/main/resources/Chess_Board/Chess_Pieces/black_queen.png");
+        piece_images.put(3, "src/main/resources/Chess_Board/Chess_Pieces/black_rook.png");
+        piece_images.put(4, "src/main/resources/Chess_Board/Chess_Pieces/black_bishop.png");
+        piece_images.put(5, "src/main/resources/Chess_Board/Chess_Pieces/black_knight.png");
+        piece_images.put(6, "src/main/resources/Chess_Board/Chess_Pieces/black_pawn.png");
 
-        piece_images.put(7, "/Users/joshdemusz/Documents/workspace/CS1530/Sprint3/laboon-chess/src/main/resources/Chess_Board/Chess_Pieces/white-king.png");
-        piece_images.put(8, "/Users/joshdemusz/Documents/workspace/CS1530/Sprint3/laboon-chess/src/main/resources/Chess_Board/Chess_Pieces/white_queen.png");
-        piece_images.put(9, "/Users/joshdemusz/Documents/workspace/CS1530/Sprint3/laboon-chess/src/main/resources/Chess_Board/Chess_Pieces/white_rook.png");
-        piece_images.put(10, "/Users/joshdemusz/Documents/workspace/CS1530/Sprint3/laboon-chess/src/main/resources/Chess_Board/Chess_Pieces/white_bishop.png");
-        piece_images.put(11, "/Users/joshdemusz/Documents/workspace/CS1530/Sprint3/laboon-chess/src/main/resources/Chess_Board/Chess_Pieces/white-king.png");
-        piece_images.put(12, "/Users/joshdemusz/Documents/workspace/CS1530/Sprint3/laboon-chess/src/main/resources/Chess_Board/Chess_Pieces/white_pawn.png");
+        piece_images.put(7, "src/main/resources/Chess_Board/Chess_Pieces/white-king.png");
+        piece_images.put(8, "src/main/resources/Chess_Board/Chess_Pieces/white_queen.png");
+        piece_images.put(9, "src/main/resources/Chess_Board/Chess_Pieces/white_rook.png");
+        piece_images.put(10, "src/main/resources/Chess_Board/Chess_Pieces/white_bishop.png");
+        piece_images.put(11, "src/main/resources/Chess_Board/Chess_Pieces/white-king.png");
+        piece_images.put(12, "src/main/resources/Chess_Board/Chess_Pieces/white_pawn.png");
 
 
     }
