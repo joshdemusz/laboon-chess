@@ -21,7 +21,6 @@ import java.util.ResourceBundle;
 
 public class Chessboard implements Initializable
 {
-
     // Game data
     private String color;
     private String difficulty;
@@ -29,16 +28,12 @@ public class Chessboard implements Initializable
 		private int midMove[] = {-1, -1};
     private HashMap<Integer, String> piece_images;
 
+    // Logical version of the chessboard
     private Piece logical_board[][];
-    private Piece logical_graveyard_black[][];
-    private Piece logical_graveyard_white[][];
 
     @FXML
     private GridPane virtual_board;
-    @FXML
-    private GridPane virtual_graveyard_black;
-    @FXML
-    private GridPane virtual_graveyard_white;
+
     @FXML
     private Pane cell0x0;
     @FXML
