@@ -1032,14 +1032,18 @@ public class Chessboard implements Initializable
         iv.setMouseTransparent(true);
 
         // Add image to grid
-        virtual_board.add(iv, x, y);
+        Pane node = (Pane)getNodeFromGridPane(virtual_board, x, y);
+        node.getChildren().setAll(iv);
     }
 
     public void undrawPiece(int x, int y)
     {
         Node rm = getNodeFromGridPane(virtual_board, x, y);
 
-        //virtual_board.getChildren().removeAll(rm);
+        if (rm instanceof Pane)
+        {
+            ((Pane)rm).getChildren().clear();
+        }
     }
 
     private Node getNodeFromGridPane(GridPane gridPane, int col, int row)
