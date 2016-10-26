@@ -890,7 +890,7 @@ public class Chessboard implements Initializable
 			midMove[1] = -1;
 			logical_board[x2][y2] = logical_board[x1][y1];
 			logical_board[x1][y1] = null;
-			
+
     }
 
     // Replace a piece when one piece overtakes another
@@ -943,6 +943,10 @@ public class Chessboard implements Initializable
                     undrawPiece(y, x);
                     // Draw the current piece
                     drawPiece(curr, y, x);
+                }
+                else if (curr == null)
+                {
+                    undrawPiece(y,x);
                 }
             }
         }
