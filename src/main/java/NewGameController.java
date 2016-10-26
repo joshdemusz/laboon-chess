@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
  */
 public class NewGameController implements Initializable
 {
-    private skeleton main;
+    private MainController main;
 
     @FXML
     private Button cancelButton;

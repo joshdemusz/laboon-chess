@@ -5,7 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="skeleton" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GraveyardController">
+<AnchorPane id="MainController" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GraveyardController">
     <children>
         <GridPane id="graveyard" fx:id="virtual_graveyard_black" prefHeight="500.0" prefWidth="206.0" stylesheets="@style.css">
             <columnConstraints>

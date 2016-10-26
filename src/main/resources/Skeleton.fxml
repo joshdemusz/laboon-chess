@@ -5,7 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="skeleton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="785.0" prefWidth="1446.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="skeleton">
+<AnchorPane id="MainController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="785.0" prefWidth="1446.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
    <children>
       <HBox alignment="TOP_CENTER" layoutX="-2.0" layoutY="627.0" prefHeight="164.0" prefWidth="1450.0">
          <children>
@@ -49,7 +49,7 @@
       </HBox>
       <Pane layoutX="446.0" layoutY="73.0" maxHeight="550.0" maxWidth="550.0" prefHeight="550.0" prefWidth="550.0">
          <children>
-            <fx:include source="Chess_Board/chessboard.fxml" />
+            <fx:include source="Chess_Board/Chessboard.fxml" />
          </children>
       </Pane>
 
