@@ -792,78 +792,6 @@ public class Chessboard implements Initializable
 
         // Set up the game
         logical_board = new Piece[8][8];
-        if(user_color.equalsIgnoreCase("Black"))
-        {
-            Piece b_king = new Piece(1, "Black");
-            Piece b_queen = new Piece(2, "Black");
-            Piece b_rook1 = new Piece(3, "Black");
-            Piece b_rook2 = new Piece(3, "Black");
-            Piece b_bishop1 = new Piece(4, "Black");
-            Piece b_bishop2 = new Piece(4, "Black");
-            Piece b_knight1 = new Piece(5, "Black");
-            Piece b_knight2 = new Piece(5, "Black");
-            Piece b_pawn1 = new Piece(6, "Black");
-            Piece b_pawn2 = new Piece(6, "Black");
-            Piece b_pawn3 = new Piece(6, "Black");
-            Piece b_pawn4 = new Piece(6, "Black");
-            Piece b_pawn5 = new Piece(6, "Black");
-            Piece b_pawn6 = new Piece(6, "Black");
-            Piece b_pawn7 = new Piece(6, "Black");
-            Piece b_pawn8 = new Piece(6, "Black");
-
-            logical_board[7][4] = b_king;
-            logical_board[7][3] = b_queen;
-            logical_board[7][0] = b_rook1;
-            logical_board[7][7] = b_rook2;
-            logical_board[7][2] = b_bishop1;
-            logical_board[7][5] = b_bishop2;
-            logical_board[7][1] = b_knight1;
-            logical_board[7][6] = b_knight2;
-            logical_board[6][0] = b_pawn1;
-            logical_board[6][1] = b_pawn2;
-            logical_board[6][2] = b_pawn3;
-            logical_board[6][3] = b_pawn4;
-            logical_board[6][4] = b_pawn5;
-            logical_board[6][5] = b_pawn6;
-            logical_board[6][6] = b_pawn7;
-            logical_board[6][7] = b_pawn8;
-
-            Piece w_king = new Piece(7, "White");
-            Piece w_queen = new Piece(8, "White");
-            Piece w_rook1 = new Piece(9, "White");
-            Piece w_rook2 = new Piece(9, "White");
-            Piece w_bishop1 = new Piece(10, "White");
-            Piece w_bishop2 = new Piece(10, "White");
-            Piece w_knight1 = new Piece(11, "White");
-            Piece w_knight2 = new Piece(11, "White");
-            Piece w_pawn1 = new Piece(12, "White");
-            Piece w_pawn2 = new Piece(12, "White");
-            Piece w_pawn3 = new Piece(12, "White");
-            Piece w_pawn4 = new Piece(12, "White");
-            Piece w_pawn5 = new Piece(12, "White");
-            Piece w_pawn6 = new Piece(12, "White");
-            Piece w_pawn7 = new Piece(12, "White");
-            Piece w_pawn8 = new Piece(12, "White");
-
-            logical_board[0][4] = w_king;
-            logical_board[0][3] = w_queen;
-            logical_board[0][0] = w_rook1;
-            logical_board[0][7] = w_rook2;
-            logical_board[0][2] = w_bishop1;
-            logical_board[0][5] = w_bishop2;
-            logical_board[0][1] = w_knight1;
-            logical_board[0][6] = w_knight2;
-            logical_board[1][0] = w_pawn1;
-            logical_board[1][1] = w_pawn2;
-            logical_board[1][2] = w_pawn3;
-            logical_board[1][3] = w_pawn4;
-            logical_board[1][4] = w_pawn5;
-            logical_board[1][5] = w_pawn6;
-            logical_board[1][6] = w_pawn7;
-            logical_board[1][7] = w_pawn8;
-        }
-        else if(user_color.equalsIgnoreCase("White"))
-        {
             Piece w_king = new Piece(7, "White");
             Piece w_queen = new Piece(8, "White");
             Piece w_rook1 = new Piece(9, "White");
@@ -931,7 +859,7 @@ public class Chessboard implements Initializable
             logical_board[1][5] = b_pawn6;
             logical_board[1][6] = b_pawn7;
             logical_board[1][7] = b_pawn8;
-        }
+
 
         //initializeGame();
 
