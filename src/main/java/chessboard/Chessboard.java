@@ -27,7 +27,7 @@ public class Chessboard implements Initializable
     private String color;
     private String difficulty;
     private boolean users_turn;
-
+		private int midMove[] = {-1, -1};
     private HashMap<Integer, String> piece_images;
 
     private Piece logical_board[][];
@@ -967,7 +967,8 @@ public class Chessboard implements Initializable
 
     public void movePiece(Piece p, int x1, int y1, int x2, int y2)
     {
-
+			undrawPiece(x1, y1);
+			drawPiece(p, y2, x2);
     }
 
     // Replace a piece when one piece overtakes another
@@ -1080,9 +1081,22 @@ public class Chessboard implements Initializable
     {
         // Swap x/y since rows and columns are flipped in GridPane
         // undrawPiece(y, x);
-        Piece p = new Piece(1, "Black");
-
-        drawPiece(p, y, x);
+        //Piece p = new Piece(1, "Black");
+        //drawPiece(p, y, x);
+				if(logical_board[x][y] == null){
+					//place to move to
+					if(midMove[0] != -1 && midMove[1] != -1){
+						//this is the second click that tells us where to move the piece
+						int initX = midMove[1];
+						int initY = midMove[0];
+						Piece toMove = logical_board[initX][initY];
+						movePiece(toMove, initX, initY, x, y);
+					}
+				}else{
+					//piece to move
+					midMove[0] = y;
+					midMove[1] = x;
+				}
     }
 
     //*************************************** GETTERS AND SETTERS *******************************************
