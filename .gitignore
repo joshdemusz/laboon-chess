@@ -1,0 +1,16 @@
+# ignore the build folder
+build/
+
+# ignore some IDE fields
+*.iml
+*.ipr
+*.iws
+
+# ignore gradle file
+ .gradle/
+ gradle/
+gradlew
+gradlew.bat
+
+#ignore system files
+.DS_Store
