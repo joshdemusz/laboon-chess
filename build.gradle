@@ -22,7 +22,7 @@ javafx {
     appID 'chessApp'
     appName 'laboon-chess'
 
-    mainClass 'skeleton'
+    mainClass 'MainController'
 }
 
 sourceCompatibility = 1.8
