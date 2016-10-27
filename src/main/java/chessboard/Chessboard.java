@@ -884,25 +884,35 @@ public class Chessboard implements Initializable
 
     public void movePiece(Piece p, int x1, int y1, int x2, int y2)
     {
-			undrawPiece(y1, x1);
-			drawPiece(p, y2, x2);
-			midMove[0] = -1;
-			midMove[1] = -1;
-			logical_board[x2][y2] = logical_board[x1][y1];
-			logical_board[x1][y1] = null;
+        undrawPiece(y1, x1);
+        drawPiece(p, y2, x2);
+        midMove[0] = -1;
+        midMove[1] = -1;
+        logical_board[x2][y2] = logical_board[x1][y1];
+        logical_board[x1][y1] = null;
 
     }
 
     // Replace a piece when one piece overtakes another
     public void replacePiece(Piece old, Piece curr, int x1, int y1, int x2, int y2)
     {
-			undrawPiece(y1, x1);
-			undrawPiece(y2, x2);
-			drawPiece(curr, y2, x2);
-			midMove[0] = -1;
-			midMove[1] = -1;
-			logical_board[x2][y2] = logical_board[x1][y1];
-			logical_board[x1][y1] = null;
+        undrawPiece(y1, x1);
+        undrawPiece(y2, x2);
+        drawPiece(curr, y2, x2);
+        midMove[0] = -1;
+        midMove[1] = -1;
+        logical_board[x2][y2] = logical_board[x1][y1];
+        logical_board[x1][y1] = null;
+
+        // Add removed piece to graveyard
+        if(old.getColor().equalsIgnoreCase("Black"))
+        {
+            BlackGraveyardController.getInstance().removePiece(old);
+        }
+        else if(old.getColor().equalsIgnoreCase("White"))
+        {
+            WhiteGraveyardController.getInstance().removePiece(old);
+        }
     }
 
     public void removePiece(Piece p, int x, int y)
@@ -929,7 +939,7 @@ public class Chessboard implements Initializable
         piece_images.put(8, "src/main/resources/Chess_Board/Chess_Pieces/white_queen.png");
         piece_images.put(9, "src/main/resources/Chess_Board/Chess_Pieces/white_rook.png");
         piece_images.put(10, "src/main/resources/Chess_Board/Chess_Pieces/white_bishop.png");
-        piece_images.put(11, "src/main/resources/Chess_Board/Chess_Pieces/white-king.png");
+        piece_images.put(11, "src/main/resources/Chess_Board/Chess_Pieces/white_knight.png");
         piece_images.put(12, "src/main/resources/Chess_Board/Chess_Pieces/white_pawn.png");
 
     }
@@ -1028,8 +1038,6 @@ public class Chessboard implements Initializable
 					Piece ourPiece = logical_board[initX][initY];
 					Piece theirPiece = logical_board[x][y];
 					replacePiece(theirPiece, ourPiece, initX, initY, x, y);
-
-                    GraveyardController.getInstance().removePiece(theirPiece);
 				}
     }
 
