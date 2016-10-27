@@ -6,7 +6,7 @@ import org.junit.Test;
 /**
  * Created by eksheen on 10/2/16.
  */
-public class chessTest {
+public class testTest {
     @Test
     public void main() throws Exception {
         Assert.assertTrue(true);
