@@ -1,4 +1,5 @@
 import chessboard.Chessboard;
+import chessboard.GraveyardController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -74,6 +75,9 @@ public class NewGameController implements Initializable
 
                 // Initialize a new game in Chessboard.java
                 Chessboard.getInstance().initializeGame(color, difficulty, first_or_second, true);
+
+                // Clear the graveyards
+                GraveyardController.getInstance().clearGraveyards();
 
                 Stage stage = (Stage) submitButton.getScene().getWindow();
                 stage.close();

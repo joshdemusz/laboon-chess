@@ -1002,7 +1002,8 @@ public class Chessboard implements Initializable
         // undrawPiece(y, x);
         //Piece p = new Piece(1, "Black");
         //drawPiece(p, y, x);
-				if(logical_board[x][y] == null){
+				if(logical_board[x][y] == null)
+				{
 					//place to move to
 					if(midMove[0] != -1 && midMove[1] != -1){
 						//this is the second click that tells us where to move the piece
@@ -1011,18 +1012,24 @@ public class Chessboard implements Initializable
 						Piece toMove = logical_board[initX][initY];
 						movePiece(toMove, initX, initY, x, y);
 					}
-				}else if(midMove[0] == -1 || (logical_board[midMove[0]][midMove[1]].getColor() == logical_board[x][y].getColor())){
+				}
+				else if(midMove[0] == -1 || (logical_board[midMove[0]][midMove[1]].getColor() == logical_board[x][y].getColor()))
+				{
 					//clicked on a piece, and haven't clicked on anything else
 					//piece to move
 					midMove[0] = x;
 					midMove[1] = y;
-				}else{
+				}
+				else
+                {
 					//trying to overtake other players piece
 					int initX = midMove[0];
 					int initY = midMove[1];
 					Piece ourPiece = logical_board[initX][initY];
-					Piece therePiece = logical_board[x][y];
-					replacePiece(therePiece, ourPiece, initX, initY, x, y);
+					Piece theirPiece = logical_board[x][y];
+					replacePiece(theirPiece, ourPiece, initX, initY, x, y);
+
+                    GraveyardController.getInstance().removePiece(theirPiece);
 				}
     }
 
@@ -1053,11 +1060,13 @@ public class Chessboard implements Initializable
 
     // The following allows NewGameController.java to access Chessboard.java and call its methods (in particular initializeGame())
     private static Chessboard instance;
-    public Chessboard() {
+    public Chessboard()
+    {
         instance = this;
     }
     // static method to get instance of view
-    public static Chessboard getInstance() {
+    public static Chessboard getInstance()
+    {
         return instance;
     }
 }
