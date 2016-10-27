@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 
 
-public class Chessboard implements Initializable
+public class ChessboardController implements Initializable
 {
     // Game data
     private String color;
@@ -1066,14 +1066,14 @@ public class Chessboard implements Initializable
         this.users_turn = users_turn;
     }
 
-    // The following allows NewGameController.java to access Chessboard.java and call its methods (in particular initializeGame())
-    private static Chessboard instance;
-    public Chessboard()
+    // The following allows NewGameController.java to access ChessboardController.java and call its methods (in particular initializeGame())
+    private static ChessboardController instance;
+    public ChessboardController()
     {
         instance = this;
     }
     // static method to get instance of view
-    public static Chessboard getInstance()
+    public static ChessboardController getInstance()
     {
         return instance;
     }

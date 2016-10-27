@@ -10,7 +10,7 @@ public class chessboardTest {
     @Test
     public void white_getColor_test(){
 
-      Chessboard cb = new Chessboard();
+      ChessboardController cb = new ChessboardController();
       String color_expected="white";
       cb.setColor(color_expected);
       String color_actual=cb.getColor();
@@ -20,7 +20,7 @@ public class chessboardTest {
     @Test
     public void black_getColor_test(){
 
-      Chessboard cb = new Chessboard();
+      ChessboardController cb = new ChessboardController();
       String color_expected="black";
       cb.setColor(color_expected);
       String color_actual=cb.getColor();
@@ -30,7 +30,7 @@ public class chessboardTest {
     @Test
     public void getDifficulty_test(){
 
-      Chessboard cb = new Chessboard();
+      ChessboardController cb = new ChessboardController();
       String difficulty_expected="easy";
       cb.setDifficulty(difficulty_expected);
       String difficulty_actual=cb.getDifficulty();
@@ -40,7 +40,7 @@ public class chessboardTest {
     @Test
     public void true_isUsers_turn_test(){
 
-      Chessboard cb = new Chessboard();
+      ChessboardController cb = new ChessboardController();
       boolean users_turn_expected=true;
       cb.setUsers_turn(users_turn_expected);
       boolean users_turn_actual=cb.isUsers_turn();
@@ -50,7 +50,7 @@ public class chessboardTest {
     @Test
     public void false_isUsers_turn_test(){
 
-      Chessboard cb = new Chessboard();
+      ChessboardController cb = new ChessboardController();
       boolean users_turn_expected=false;
       cb.setUsers_turn(users_turn_expected);
       boolean users_turn_actual=cb.isUsers_turn();
@@ -60,8 +60,8 @@ public class chessboardTest {
     @Test
     public void getInstance_test(){
 
-      Chessboard cb = new Chessboard();
-      Chessboard cb2= new Chessboard();
+      ChessboardController cb = new ChessboardController();
+      ChessboardController cb2= new ChessboardController();
       Assert.assertEquals(cb.getInstance(),cb2.getInstance());
     }
 

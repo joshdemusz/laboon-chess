@@ -45,7 +45,7 @@ public class GraveyardController
         return null;
     }
 
-    // Allows Chessboard.java to access the methods of chessboard.GraveyardController.java
+    // Allows ChessboardController.java to access the methods of chessboard.GraveyardController.java
     private static GraveyardController instance;
     public GraveyardController()
     {
