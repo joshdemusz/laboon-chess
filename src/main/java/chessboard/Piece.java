@@ -1,6 +1,7 @@
 package chessboard;
 
 
+import javafx.scene.paint.Color;
 
 /**
  * Created by joshdemusz on 10/22/16.
@@ -8,10 +9,10 @@ package chessboard;
 public class Piece
 {
     private int ID;
-    private String color;
+    private Color color;
     private boolean in_play;
 
-    public Piece(int id, String c)
+    public Piece(int id, Color c)
     {
         // Intialize piece information
         setID(id);
@@ -31,11 +32,11 @@ public class Piece
         this.ID = ID;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 

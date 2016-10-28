@@ -5,12 +5,15 @@ package chessboard;/**
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.effect.BlendMode;
+import javafx.scene.effect.BoxBlur;
+import javafx.scene.image.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 import java.io.File;
 import java.net.URL;
@@ -22,7 +25,10 @@ import java.util.ResourceBundle;
 public class ChessboardController implements Initializable
 {
     // Game data
-    private String color;
+    private String userColor;
+    private String pcColor;
+    private Color uc;
+    private Color pcc;
     private String difficulty;
     private boolean users_turn;
 		private int midMove[] = {-1, -1};
@@ -760,9 +766,12 @@ public class ChessboardController implements Initializable
         });*/
     }
 
-    public void initializeGame(String c, String d, boolean first_or_second, boolean new_game)
+    public void initializeGame(Color uC, Color cC, String d, boolean first_or_second, boolean new_game)
     {
-        setColor(c);
+        setUserColor(uC.toString());
+        setPcColor(cC.toString());
+        setUc(uC);
+        setPcc(cC);
         setDifficulty(d);
         setUsers_turn(!first_or_second);
 
@@ -783,26 +792,30 @@ public class ChessboardController implements Initializable
     public void newGame()
     {
         // User's color
-        String user_color = getColor();
+        //String user_color = getUserColor();
+        //String pc_color = getPcColor();
+
+        Color user_color = getUc();
+        Color pc_color = getPcc();
 
         // Set up the game
         logical_board = new Piece[8][8];
-            Piece w_king = new Piece(7, "White");
-            Piece w_queen = new Piece(8, "White");
-            Piece w_rook1 = new Piece(9, "White");
-            Piece w_rook2 = new Piece(9, "White");
-            Piece w_bishop1 = new Piece(10, "White");
-            Piece w_bishop2 = new Piece(10, "White");
-            Piece w_knight1 = new Piece(11, "White");
-            Piece w_knight2 = new Piece(11, "White");
-            Piece w_pawn1 = new Piece(12, "White");
-            Piece w_pawn2 = new Piece(12, "White");
-            Piece w_pawn3 = new Piece(12, "White");
-            Piece w_pawn4 = new Piece(12, "White");
-            Piece w_pawn5 = new Piece(12, "White");
-            Piece w_pawn6 = new Piece(12, "White");
-            Piece w_pawn7 = new Piece(12, "White");
-            Piece w_pawn8 = new Piece(12, "White");
+            Piece w_king = new Piece(7, user_color);
+            Piece w_queen = new Piece(8, user_color);
+            Piece w_rook1 = new Piece(9, user_color);
+            Piece w_rook2 = new Piece(9, user_color);
+            Piece w_bishop1 = new Piece(10, user_color);
+            Piece w_bishop2 = new Piece(10, user_color);
+            Piece w_knight1 = new Piece(11, user_color);
+            Piece w_knight2 = new Piece(11, user_color);
+            Piece w_pawn1 = new Piece(12, user_color);
+            Piece w_pawn2 = new Piece(12, user_color);
+            Piece w_pawn3 = new Piece(12, user_color);
+            Piece w_pawn4 = new Piece(12, user_color);
+            Piece w_pawn5 = new Piece(12, user_color);
+            Piece w_pawn6 = new Piece(12, user_color);
+            Piece w_pawn7 = new Piece(12, user_color);
+            Piece w_pawn8 = new Piece(12, user_color);
 
             logical_board[7][4] = w_king;
             logical_board[7][3] = w_queen;
@@ -821,22 +834,22 @@ public class ChessboardController implements Initializable
             logical_board[6][6] = w_pawn7;
             logical_board[6][7] = w_pawn8;
 
-            Piece b_king = new Piece(1, "Black");
-            Piece b_queen = new Piece(2, "Black");
-            Piece b_rook1 = new Piece(3, "Black");
-            Piece b_rook2 = new Piece(3, "Black");
-            Piece b_bishop1 = new Piece(4, "Black");
-            Piece b_bishop2 = new Piece(4, "Black");
-            Piece b_knight1 = new Piece(5, "Black");
-            Piece b_knight2 = new Piece(5, "Black");
-            Piece b_pawn1 = new Piece(6, "Black");
-            Piece b_pawn2 = new Piece(6, "Black");
-            Piece b_pawn3 = new Piece(6, "Black");
-            Piece b_pawn4 = new Piece(6, "Black");
-            Piece b_pawn5 = new Piece(6, "Black");
-            Piece b_pawn6 = new Piece(6, "Black");
-            Piece b_pawn7 = new Piece(6, "Black");
-            Piece b_pawn8 = new Piece(6, "Black");
+            Piece b_king = new Piece(1, pc_color);
+            Piece b_queen = new Piece(2, pc_color);
+            Piece b_rook1 = new Piece(3, pc_color);
+            Piece b_rook2 = new Piece(3, pc_color);
+            Piece b_bishop1 = new Piece(4, pc_color);
+            Piece b_bishop2 = new Piece(4, pc_color);
+            Piece b_knight1 = new Piece(5, pc_color);
+            Piece b_knight2 = new Piece(5, pc_color);
+            Piece b_pawn1 = new Piece(6, pc_color);
+            Piece b_pawn2 = new Piece(6, pc_color);
+            Piece b_pawn3 = new Piece(6, pc_color);
+            Piece b_pawn4 = new Piece(6, pc_color);
+            Piece b_pawn5 = new Piece(6, pc_color);
+            Piece b_pawn6 = new Piece(6, pc_color);
+            Piece b_pawn7 = new Piece(6, pc_color);
+            Piece b_pawn8 = new Piece(6, pc_color);
 
             logical_board[0][4] = b_king;
             logical_board[0][3] = b_queen;
@@ -905,13 +918,22 @@ public class ChessboardController implements Initializable
         logical_board[x1][y1] = null;
 
         // Add removed piece to graveyard
-        if(old.getColor().equalsIgnoreCase("Black"))
+        /*if(old.getColor().equalsIgnoreCase("Black"))
         {
-            BlackGraveyardController.getInstance().removePiece(old);
+            PCGraveyardController.getInstance().removePiece(old);
         }
         else if(old.getColor().equalsIgnoreCase("White"))
         {
-            WhiteGraveyardController.getInstance().removePiece(old);
+            UserGraveyardController.getInstance().removePiece(old);
+        }*/
+
+        if(old.getColor().equals(getPcc()))
+        {
+            PCGraveyardController.getInstance().removePiece(old);
+        }
+        else if(old.getColor().equals(getUc()))
+        {
+            UserGraveyardController.getInstance().removePiece(old);
         }
     }
 
@@ -928,12 +950,12 @@ public class ChessboardController implements Initializable
     {
         piece_images = new HashMap<Integer, String>();
 
-        piece_images.put(1, "src/main/resources/Chess_Board/Chess_Pieces/black_king.png");
-        piece_images.put(2, "src/main/resources/Chess_Board/Chess_Pieces/black_queen.png");
-        piece_images.put(3, "src/main/resources/Chess_Board/Chess_Pieces/black_rook.png");
-        piece_images.put(4, "src/main/resources/Chess_Board/Chess_Pieces/black_bishop.png");
-        piece_images.put(5, "src/main/resources/Chess_Board/Chess_Pieces/black_knight.png");
-        piece_images.put(6, "src/main/resources/Chess_Board/Chess_Pieces/black_pawn.png");
+        piece_images.put(1, "src/main/resources/Chess_Board/Chess_Pieces/white-king.png");
+        piece_images.put(2, "src/main/resources/Chess_Board/Chess_Pieces/white_queen.png");
+        piece_images.put(3, "src/main/resources/Chess_Board/Chess_Pieces/white_rook.png");
+        piece_images.put(4, "src/main/resources/Chess_Board/Chess_Pieces/white_bishop.png");
+        piece_images.put(5, "src/main/resources/Chess_Board/Chess_Pieces/white_knight.png");
+        piece_images.put(6, "src/main/resources/Chess_Board/Chess_Pieces/white_pawn.png");
 
         piece_images.put(7, "src/main/resources/Chess_Board/Chess_Pieces/white-king.png");
         piece_images.put(8, "src/main/resources/Chess_Board/Chess_Pieces/white_queen.png");
@@ -941,7 +963,6 @@ public class ChessboardController implements Initializable
         piece_images.put(10, "src/main/resources/Chess_Board/Chess_Pieces/white_bishop.png");
         piece_images.put(11, "src/main/resources/Chess_Board/Chess_Pieces/white_knight.png");
         piece_images.put(12, "src/main/resources/Chess_Board/Chess_Pieces/white_pawn.png");
-
     }
 
     public void drawBoard()
@@ -975,14 +996,61 @@ public class ChessboardController implements Initializable
 
         File file = new File(image_url);
         Image image = new Image(file.toURI().toString());
-        ImageView iv = new ImageView(image);
 
-        iv.setMouseTransparent(true);
+        // Get colored piece that will act as a filter
+        WritableImage colored_image = changeImageColor(image, p.getColor());
+
+        ImageView top = new ImageView(image);
+        ImageView bottom = new ImageView(colored_image);
+
+        top.setBlendMode(BlendMode.ADD);
+
+        Group blend = new Group(bottom, top);
+
+        BoxBlur bb = new BoxBlur();
+        bb.setHeight(10);
+        bb.setWidth(10);
+        bb.setIterations(3);
+
+        bottom.setEffect(bb);
+
+        Color color = p.getColor();
+
+        top.setMouseTransparent(true);
+        bottom.setMouseTransparent(true);
+        blend.setMouseTransparent(true);
 
         // Add image to grid
         Pane node = (Pane)getNodeFromGridPane(virtual_board, x, y);
-        node.getChildren().setAll(iv);
+        node.getChildren().setAll(blend);
     }
+
+    public WritableImage changeImageColor(Image i, Color c)
+    {
+        PixelReader reader = i.getPixelReader();
+
+        int width = (int)i.getWidth();
+        int height = (int)i.getHeight();
+
+        WritableImage dest = new WritableImage(width, height);
+        PixelWriter writer;
+        writer = dest.getPixelWriter();
+
+        // Replace the pixels that are not transparent with the user's color choice
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                if(!reader.getColor(x, y).equals(Color.TRANSPARENT))
+                {
+                    writer.setColor(x, y, c);
+                }
+            }
+        }
+
+        return dest;
+    }
+
 
     public void undrawPiece(int x, int y)
     {
@@ -1042,13 +1110,39 @@ public class ChessboardController implements Initializable
     }
 
     //*************************************** GETTERS AND SETTERS *******************************************
-    public String getColor() {
-        return color;
+
+    public String getUserColor() {
+        return userColor;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setUserColor(String userColor) {
+        this.userColor = userColor;
     }
+
+    public String getPcColor() {
+        return pcColor;
+    }
+
+    public void setPcColor(String pcColor) {
+        this.pcColor = pcColor;
+    }
+
+    public Color getUc() {
+        return uc;
+    }
+
+    public void setUc(Color uc) {
+        this.uc = uc;
+    }
+
+    public Color getPcc() {
+        return pcc;
+    }
+
+    public void setPcc(Color pcc) {
+        this.pcc = pcc;
+    }
+
 
     public String getDifficulty() {
         return difficulty;
