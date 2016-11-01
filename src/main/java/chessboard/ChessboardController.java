@@ -25,14 +25,13 @@ import java.util.ResourceBundle;
 public class ChessboardController implements Initializable
 {
     // Game data
-    private String userColor;
-    private String pcColor;
-    private Color uc;
-    private Color pcc;
+    private Color userColor;
+    private Color pcColor;
     private String difficulty;
     private boolean users_turn;
 		private int midMove[] = {-1, -1};
     private HashMap<Integer, String> piece_images;
+    private boolean rotated;
 
     // Logical version of the chessboard
     private Piece logical_board[][];
@@ -768,13 +767,10 @@ public class ChessboardController implements Initializable
 
     public void initializeGame(Color uC, Color cC, String d, boolean first_or_second, boolean new_game)
     {
-        setUserColor(uC.toString());
-        setPcColor(cC.toString());
-        setUc(uC);
-        setPcc(cC);
+        setUserColor(uC);
+        setPcColor(cC);
         setDifficulty(d);
         setUsers_turn(!first_or_second);
-
 
         // Anything else ?
 
@@ -795,8 +791,8 @@ public class ChessboardController implements Initializable
         //String user_color = getUserColor();
         //String pc_color = getPcColor();
 
-        Color user_color = getUc();
-        Color pc_color = getPcc();
+        Color user_color = getUserColor();
+        Color pc_color = getPcColor();
 
         // Set up the game
         logical_board = new Piece[8][8];
@@ -869,7 +865,7 @@ public class ChessboardController implements Initializable
             logical_board[1][7] = b_pawn8;
 
 
-        //initializeGame();
+
 
         drawBoard();
     }
@@ -893,6 +889,42 @@ public class ChessboardController implements Initializable
         //initializeGame();
 
         drawBoard();
+    }
+
+    public void rotateBoard()
+    {
+        double rotate_angle = 45;
+
+        if(!isRotated())
+        {
+            rotate_angle = 180;
+
+            setRotated(true);
+        }
+        else if(isRotated())
+        {
+            rotate_angle = 0;
+
+            setRotated(false);
+        }
+
+        // Rotate board 180 degress
+        virtual_board.setRotate(rotate_angle);
+
+        // Rotate nodes inside the board 180 degrees so they are right-side-up
+        for (int x = 0; x < 8; x++)
+        {
+            for(int y = 0; y < 8; y++)
+            {
+                Node cell = getNodeFromGridPane(virtual_board, y, x);
+                cell.setRotate(rotate_angle);
+            }
+        }
+
+        // Rotate logical board
+
+        // Rotate turn indicator <once we have one>
+
     }
 
     public void movePiece(Piece p, int x1, int y1, int x2, int y2)
@@ -927,11 +959,11 @@ public class ChessboardController implements Initializable
             UserGraveyardController.getInstance().removePiece(old);
         }*/
 
-        if(old.getColor().equals(getPcc()))
+        if(old.getColor().equals(getPcColor()))
         {
             PCGraveyardController.getInstance().removePiece(old);
         }
-        else if(old.getColor().equals(getUc()))
+        else if(old.getColor().equals(getUserColor()))
         {
             UserGraveyardController.getInstance().removePiece(old);
         }
@@ -950,14 +982,14 @@ public class ChessboardController implements Initializable
     {
         piece_images = new HashMap<Integer, String>();
 
-        piece_images.put(1, "src/main/resources/Chess_Board/Chess_Pieces/white-king.png");
+        piece_images.put(1, "src/main/resources/Chess_Board/Chess_Pieces/white_king.png");
         piece_images.put(2, "src/main/resources/Chess_Board/Chess_Pieces/white_queen.png");
         piece_images.put(3, "src/main/resources/Chess_Board/Chess_Pieces/white_rook.png");
         piece_images.put(4, "src/main/resources/Chess_Board/Chess_Pieces/white_bishop.png");
         piece_images.put(5, "src/main/resources/Chess_Board/Chess_Pieces/white_knight.png");
         piece_images.put(6, "src/main/resources/Chess_Board/Chess_Pieces/white_pawn.png");
 
-        piece_images.put(7, "src/main/resources/Chess_Board/Chess_Pieces/white-king.png");
+        piece_images.put(7, "src/main/resources/Chess_Board/Chess_Pieces/white_king.png");
         piece_images.put(8, "src/main/resources/Chess_Board/Chess_Pieces/white_queen.png");
         piece_images.put(9, "src/main/resources/Chess_Board/Chess_Pieces/white_rook.png");
         piece_images.put(10, "src/main/resources/Chess_Board/Chess_Pieces/white_bishop.png");
@@ -1051,7 +1083,6 @@ public class ChessboardController implements Initializable
         return dest;
     }
 
-
     public void undrawPiece(int x, int y)
     {
         Node rm = getNodeFromGridPane(virtual_board, x, y);
@@ -1111,38 +1142,21 @@ public class ChessboardController implements Initializable
 
     //*************************************** GETTERS AND SETTERS *******************************************
 
-    public String getUserColor() {
+    public Color getUserColor() {
         return userColor;
     }
 
-    public void setUserColor(String userColor) {
+    public void setUserColor(Color userColor) {
         this.userColor = userColor;
     }
 
-    public String getPcColor() {
+    public Color getPcColor() {
         return pcColor;
     }
 
-    public void setPcColor(String pcColor) {
+    public void setPcColor(Color pcColor) {
         this.pcColor = pcColor;
     }
-
-    public Color getUc() {
-        return uc;
-    }
-
-    public void setUc(Color uc) {
-        this.uc = uc;
-    }
-
-    public Color getPcc() {
-        return pcc;
-    }
-
-    public void setPcc(Color pcc) {
-        this.pcc = pcc;
-    }
-
 
     public String getDifficulty() {
         return difficulty;
@@ -1158,6 +1172,14 @@ public class ChessboardController implements Initializable
 
     public void setUsers_turn(boolean users_turn) {
         this.users_turn = users_turn;
+    }
+
+    public boolean isRotated() {
+        return rotated;
+    }
+
+    public void setRotated(boolean rotated) {
+        this.rotated = rotated;
     }
 
     // The following allows NewGameController.java to access ChessboardController.java and call its methods (in particular initializeGame())

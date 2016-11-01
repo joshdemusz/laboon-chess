@@ -20,8 +20,6 @@ import java.util.ResourceBundle;
  */
 public class NewGameController implements Initializable
 {
-    private MainController main;
-
     @FXML
     private Button cancelButton;
     @FXML

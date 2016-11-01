@@ -45,6 +45,11 @@
                   </Button>
                </children>
             </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <Button layoutX="46.0" layoutY="30.0" maxHeight="87.0" maxWidth="87.0" mnemonicParsing="false" onAction="#rotateBoard" prefHeight="87.0" prefWidth="87.0" style="-fx-graphic: url('rotate.png')" />
+               </children>
+            </Pane>
          </children>
       </HBox>
       <Pane layoutX="446.0" layoutY="73.0" maxHeight="550.0" maxWidth="550.0" prefHeight="550.0" prefWidth="550.0">
@@ -74,12 +79,12 @@
       </HBox>
       <Pane layoutX="162.0" layoutY="103.0" prefHeight="518.0" prefWidth="164.0">
          <children>
-            <fx:include source="WhiteGraveyard.fxml" />
+            <fx:include source="UserGraveyard.fxml" />
          </children>
       </Pane>
       <Pane layoutX="1121.0" layoutY="104.0" prefHeight="518.0" prefWidth="164.0">
          <children>
-            <fx:include source="BlackGraveyard.fxml" />
+            <fx:include source="PCGraveyard.fxml" />
          </children>
       </Pane>
       

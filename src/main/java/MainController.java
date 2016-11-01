@@ -1,3 +1,4 @@
+import chessboard.ChessboardController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -46,6 +47,20 @@ public class MainController extends Application
         stage.setTitle("Start a New Game");
         stage.setScene(new Scene(root1));
         stage.show();
+    }
+
+    public void rotateBoard()
+    {
+        ChessboardController.getInstance().rotateBoard();
+    }
+
+    public void saveGame()
+    {
+
+    }
+
+    public void loadGame()
+    {
 
     }
 }

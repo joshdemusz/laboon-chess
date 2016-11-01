@@ -17,3 +17,8 @@
     -fx-border-width: 3px;
 
 }
+
+#rotate{
+   -fx-graphic: url('rotate.png');
+}
+
