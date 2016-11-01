@@ -921,7 +921,21 @@ public class ChessboardController implements Initializable
             }
         }
 
-        // Rotate logical board
+        // Rotate logical board 180 degrees
+        for (int i = 0; i < 8 / 2; i++)
+        {
+            int first = i;
+            int last = 7 - i;
+            for (int j = first; j < last; j++) {
+                int offset = j - first;
+                Piece p1 = logical_board[first][j];
+                logical_board[first][j] = logical_board[last][last - offset];
+                logical_board[last][last - offset] = p1;
+                Piece p2 = logical_board[last - offset][first];
+                logical_board[last - offset][first] = logical_board[j][last];
+                logical_board[j][last] = p2;
+            }
+        }
 
         // Rotate turn indicator <once we have one>
 
