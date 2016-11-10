@@ -774,6 +774,7 @@ public class ChessboardController implements Initializable
 
 	public void initializeGame(Color uC, Color cC, String d, boolean first_or_second, boolean new_game)
 	{
+		moveCount = 0;
 		setUserColor(uC);
 		setPcColor(cC);
 		setDifficulty(d);
@@ -986,7 +987,6 @@ public class ChessboardController implements Initializable
 			midMove[1] = -1;
 			logical_board[x2][y2] = logical_board[x1][y1];
 			logical_board[x1][y1] = null;
-
 	}
 
 	public void executeBestMove(String s) {
@@ -1060,7 +1060,7 @@ public class ChessboardController implements Initializable
 		System.out.println(x2);
 		System.out.println(y2);
 		Piece p = findPiece(y1, x1);
-		movePieceComp(p,x1,y1,x2,y2);
+		movePieceComp(p,y1,x1,y2,x2);
 	}
 
 	public Piece findPiece(int x1, int y1) {
@@ -1081,6 +1081,14 @@ public class ChessboardController implements Initializable
 			midMove[1] = -1;
 			logical_board[x2][y2] = logical_board[x1][y1];
 			logical_board[x1][y1] = null;
+			String FEN = generateFEN();
+			System.out.println(FEN);
+			System.out.println("Getting legal moves...");
+			System.out.println(client.getLegalMoves(FEN));
+			System.out.println("Getting best move...");
+			String bestMove = client.getBestMove(FEN, 10);
+			System.out.println(bestMove);
+			executeBestMove(bestMove);
 
 			// Add removed piece to graveyard
 			/*if(old.getColor().equalsIgnoreCase("Black"))
