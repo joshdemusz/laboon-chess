@@ -1251,7 +1251,7 @@ public class ChessboardController implements Initializable
           for(int j = 0 ; j < 8 ; j++) {
             Piece fenPiece = logical_board[i][j];
              if (fenPiece == null) {
-               returnFEN += "*";
+               returnFEN += "-";
             } else {
               Color pieceColor = fenPiece.getColor();
               int id = fenPiece.getID();
@@ -1299,9 +1299,34 @@ public class ChessboardController implements Initializable
           }
           returnFEN += "/";
         }
+
         System.out.println("returnFEN = " + returnFEN);
+				String returnStr = "";
+				int count = 0;
+				String list = "";
+				String token = "";
+				char[] fenArr = returnFEN.toCharArray();
+				for(int i = 0 ; i < returnFEN.length() ; i++) {
+					if(fenArr[i] != '-') {
+						if(token.length() > 0) {
+							returnStr += list;
+							returnStr += token.length();
+							list = "";
+							token = "";
+						}
+						list += fenArr[i];
+						if(i == returnFEN.length()-2) {
+							returnStr += list;
+						}
+					}
+					else if(fenArr[i] == '-') {
+						token += fenArr[i];
+					}
+				}
+				System.out.println("returnStr = " + returnStr);
         return returnFEN;
       }
+
 
 
 	// The following allows NewGameController.java to access ChessboardController.java and call its methods (in particular initializeGame())
