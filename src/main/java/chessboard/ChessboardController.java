@@ -35,6 +35,9 @@ public class ChessboardController implements Initializable
 	private boolean rotated;
 	private int moveCount = 0;
 
+	//Stockfish client
+	Stockfish client = new Stockfish();
+
 	// Logical version of the chessboard
 	private Piece logical_board[][];
 
@@ -173,6 +176,8 @@ public class ChessboardController implements Initializable
 	@Override
 	public void initialize(URL location, ResourceBundle resources)
 	{
+
+		initializeStockfish();
 		// Create HashMap of piece ID --> image url
 		initializePieceImages();
 
@@ -952,8 +957,7 @@ public class ChessboardController implements Initializable
 
 	public void movePiece(Piece p, int x1, int y1, int x2, int y2)
 	{
-
-		if(p.getColor() != getLastTurnColor()) {
+		// if(p.getColor() != getLastTurnColor()) {
 			undrawPiece(y1, x1);
 			drawPiece(p, y2, x2);
 			moveCount++;
@@ -961,10 +965,107 @@ public class ChessboardController implements Initializable
 			midMove[1] = -1;
 			logical_board[x2][y2] = logical_board[x1][y1];
 			logical_board[x1][y1] = null;
-      generateFEN();
-			setLastTurnColor(p.getColor());
-		}
+      String FEN = generateFEN();
+			System.out.println(FEN);
+			System.out.println("Getting legal moves...");
+			System.out.println(client.getLegalMoves(FEN));
+			System.out.println("Getting best move...");
+			String bestMove = client.getBestMove(FEN, 10);
+			System.out.println(bestMove);
+			executeBestMove(bestMove);
+			// setLastTurnColor(p.getColor());
+		// }
 
+	}
+
+	public void movePieceComp(Piece p, int x1, int y1, int x2, int y2) {
+			undrawPiece(y1, x1);
+			drawPiece(p, y2, x2);
+			moveCount++;
+			midMove[0] = -1;
+			midMove[1] = -1;
+			logical_board[x2][y2] = logical_board[x1][y1];
+			logical_board[x1][y1] = null;
+
+	}
+
+	public void executeBestMove(String s) {
+		char[] moveSet = s.toCharArray();
+		int x1 = 0;
+		int x2 = 0;
+		int y1 = 0;
+		int y2 = 0;
+		if(moveSet[0] == 'a') {
+			x1 = 0;
+		}
+		if(moveSet[0] == 'b') {
+			x1 = 1;
+		}
+		if(moveSet[0] == 'c') {
+			x1 = 2;
+		}
+		if(moveSet[0] == 'd') {
+			x1 = 3;
+		}
+		if(moveSet[0] == 'e') {
+			x1 = 4;
+		}
+		if(moveSet[0] == 'f') {
+			x1 = 5;
+		}
+		if(moveSet[0] == 'g') {
+			x1 = 6;
+		}
+		if(moveSet[0] == 'h') {
+			x1 = 7;
+		}
+		y1 = Character.getNumericValue(moveSet[1]);
+		if(moveSet[2] == 'a') {
+			x2 = 0;
+		}
+		if(moveSet[2] == 'b') {
+			x2 = 1;
+		}
+		if(moveSet[2] == 'c') {
+			x2 = 2;
+		}
+		if(moveSet[2] == 'd') {
+			x2 = 3;
+		}
+		if(moveSet[2] == 'e') {
+			x2 = 4;
+		}
+		if(moveSet[2] == 'f') {
+			x2 = 5;
+		}
+		if(moveSet[2] == 'g') {
+			x2 = 6;
+		}
+		if(moveSet[2] == 'h') {
+			x2 = 7;
+		}
+		y2 = Character.getNumericValue(moveSet[3]);
+		y1 = y1-1;
+		y2 = y2-1;
+		x1 = x1;
+		y1 = y1-7;
+		x2 = x2;
+		y2 = y2-7;
+		if(x1<0){x1 *= -1;}
+		if(y1<0){y1 *= -1;}
+		if(x2<0){x2 *= -1;}
+		if(y2<0){y2 *= -1;}
+		System.out.println(x1);
+		System.out.println(y1);
+		System.out.println(x2);
+		System.out.println(y2);
+		Piece p = findPiece(y1, x1);
+		movePieceComp(p,x1,y1,x2,y2);
+	}
+
+	public Piece findPiece(int x1, int y1) {
+		Piece returnPiece = logical_board[x1][y1];
+		return returnPiece;
 	}
 
 	// Replace a piece when one piece overtakes another
@@ -1031,6 +1132,20 @@ public class ChessboardController implements Initializable
 		piece_images.put(10, "src/main/resources/Chess_Board/Chess_Pieces/white_bishop.png");
 		piece_images.put(11, "src/main/resources/Chess_Board/Chess_Pieces/white_knight.png");
 		piece_images.put(12, "src/main/resources/Chess_Board/Chess_Pieces/white_pawn.png");
+	}
+
+	public void initializeStockfish() {
+		if (client.startEngine()) {
+			System.out.println("Engine has started..");
+		} else {
+			System.out.println("Engine did not start.");
+		}
+
+		// send commands manually
+		client.sendCommand("uci");
+
+		// receive output dump
+		System.out.println(client.getOutput(0));
 	}
 
 	public void drawBoard()
@@ -1143,57 +1258,88 @@ public class ChessboardController implements Initializable
 
 	public void clickSpace(int x, int y)
 	{
-    //Don't let the user go twic
-		if(getUserColor() != getLastTurnColor() && isUsers_turn())
-		{
-			// Swap x/y since rows and columns are flipped in GridPane
-			// undrawPiece(y, x);
-			//Piece p = new Piece(1, "Black");
-			//drawPiece(p, y, x);
-			if(logical_board[x][y] == null)
-			{
-				//place to move to
-				if(midMove[0] != -1 && midMove[1] != -1){
-					//this is the second click that tells us where to move the piece
-					int initX = midMove[0];
-					int initY = midMove[1];
-					Piece toMove = logical_board[initX][initY];
-          //don't let the user move the computer's pieces
-
-          if(getUserColor() == toMove.getColor())
-          {
-					       movePiece(toMove, initX, initY, x, y);
-                 setUsers_turn(false);
-          }
-				}
-			}
-			else if((midMove[0] == -1 && logical_board[x][y].getColor()!=getPcColor())|| (logical_board[midMove[0]][midMove[1]].getColor() == logical_board[x][y].getColor() && logical_board[x][y].getColor()!=getPcColor()))
-			{
-        //Testing ahed when PC makes moves double check if we need the second &&
-				//clicked on a piece, and haven't clicked on anything else
-				//piece to move
-            midMove[0] = x;
-            midMove[1] = y;
-
-
-
-
-			}
-			else
-			{
-				//trying to overtake other players piece
-				int initX = midMove[0];
-				int initY = midMove[1];
-				Piece ourPiece = logical_board[initX][initY];
-				Piece theirPiece = logical_board[x][y];
-        //don't let the user move the computer's pieces
-        if(getUserColor() == ourPiece.getColor())
-        {
-				      replacePiece(theirPiece, ourPiece, initX, initY, x, y);
-              setUsers_turn(false);
-        }
-			}
-		}
+		// Swap x/y since rows and columns are flipped in GridPane
+		 // undrawPiece(y, x);
+		 //Piece p = new Piece(1, "Black");
+		 //drawPiece(p, y, x);
+		 if(logical_board[x][y] == null)
+		 {
+			 //place to move to
+			 if(midMove[0] != -1 && midMove[1] != -1){
+				 //this is the second click that tells us where to move the piece
+				 int initX = midMove[0];
+				 int initY = midMove[1];
+				 Piece toMove = logical_board[initX][initY];
+				 movePiece(toMove, initX, initY, x, y);
+			 }
+		 }
+		 else if(midMove[0] == -1 || (logical_board[midMove[0]][midMove[1]].getColor() == logical_board[x][y].getColor()))
+		 {
+			 //clicked on a piece, and haven't clicked on anything else
+			 //piece to move
+			 midMove[0] = x;
+			 midMove[1] = y;
+		 }
+		 else
+						 {
+			 //trying to overtake other players piece
+			 int initX = midMove[0];
+			 int initY = midMove[1];
+			 Piece ourPiece = logical_board[initX][initY];
+			 Piece theirPiece = logical_board[x][y];
+			 replacePiece(theirPiece, ourPiece, initX, initY, x, y);
+		 }
+    // //Don't let the user go twice
+		// if(getUserColor() != getLastTurnColor() && isUsers_turn())
+		// {
+		// 	// Swap x/y since rows and columns are flipped in GridPane
+		// 	// undrawPiece(y, x);
+		// 	//Piece p = new Piece(1, "Black");
+		// 	//drawPiece(p, y, x);
+		// 	if(logical_board[x][y] == null)
+		// 	{
+		// 		//place to move to
+		// 		if(midMove[0] != -1 && midMove[1] != -1){
+		// 			//this is the second click that tells us where to move the piece
+		// 			int initX = midMove[0];
+		// 			int initY = midMove[1];
+		// 			Piece toMove = logical_board[initX][initY];
+    //       //don't let the user move the computer's pieces
+		//
+    //       if(getUserColor() == toMove.getColor())
+    //       {
+		// 			       movePiece(toMove, initX, initY, x, y);
+    //              setUsers_turn(false);
+    //       }
+		// 		}
+		// 	}
+		// 	else if((midMove[0] == -1 && logical_board[x][y].getColor()!=getPcColor())|| (logical_board[midMove[0]][midMove[1]].getColor() == logical_board[x][y].getColor() && logical_board[x][y].getColor()!=getPcColor()))
+		// 	{
+    //     //Testing ahed when PC makes moves double check if we need the second &&
+		// 		//clicked on a piece, and haven't clicked on anything else
+		// 		//piece to move
+    //         midMove[0] = x;
+    //         midMove[1] = y;
+		//
+		//
+		//
+		//
+		// 	}
+		// 	else
+		// 	{
+		// 		//trying to overtake other players piece
+		// 		int initX = midMove[0];
+		// 		int initY = midMove[1];
+		// 		Piece ourPiece = logical_board[initX][initY];
+		// 		Piece theirPiece = logical_board[x][y];
+    //     //don't let the user move the computer's pieces
+    //     if(getUserColor() == ourPiece.getColor())
+    //     {
+		// 		      replacePiece(theirPiece, ourPiece, initX, initY, x, y);
+    //           setUsers_turn(false);
+    //     }
+		// 	}
+		// }
 	}
 
 	//*************************************** GETTERS AND SETTERS *******************************************
@@ -1325,10 +1471,10 @@ public class ChessboardController implements Initializable
 						token += fenArr[i];
 					}
 				}
-				if(users_turn == true) {
+				if(users_turn == false) {
 					returnStr += " w - -";
 				}
-				else if(users_turn == false)  {
+				else if(users_turn == true)  {
 					returnStr += " b - -";
 				}
 				int halfCount = moveCount/2;
@@ -1337,7 +1483,7 @@ public class ChessboardController implements Initializable
 				returnStr += halfCountStr;
 				returnStr += moveCountStr;
 				System.out.println("returnStr = " + returnStr);
-        return returnFEN;
+        return returnStr;
       }
 
 
