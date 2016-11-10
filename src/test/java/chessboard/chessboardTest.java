@@ -7,6 +7,17 @@ import javafx.scene.paint.Color;
  * Created by iwanjek on 10/26/16.
  */
 public class chessboardTest {
+
+    @Test
+    public void lastTurnColor_test(){
+      //tests the getLastTurnColor
+      ChessboardController cb = new ChessboardController();
+      Color color_expected=Color.WHITE;
+      cb.setLastTurnColor(color_expected);
+      Color color_actual=cb.getLastTurnColor();
+      Assert.assertEquals(color_expected,color_actual);
+    }
+
     @Test
     public void white_getUserColor_test(){
       //tests the getUserColor and setUserColor methods
@@ -26,7 +37,7 @@ public class chessboardTest {
       Color color_actual=cb.getUserColor();
       Assert.assertEquals(color_expected,color_actual);
     }
-    
+
     @Test
     public void white_getPCColor_test(){
       //tests the getPcColor and setPcColor methods
@@ -36,7 +47,7 @@ public class chessboardTest {
       Color color_actual=cb.getPcColor();
       Assert.assertEquals(color_expected,color_actual);
     }
-    
+
     @Test
     public void black_getPCColor_test(){
       //tests the getPcColor and setPcColor methods
@@ -79,7 +90,7 @@ public class chessboardTest {
 
     @Test
     public void getInstance_test(){
-      //Tests ChessboardController and getInstance 
+      //Tests ChessboardController and getInstance
       ChessboardController cb = new ChessboardController();
       ChessboardController cb2= new ChessboardController();
       Assert.assertEquals(cb.getInstance(),cb2.getInstance());
@@ -103,5 +114,5 @@ public class chessboardTest {
       boolean isrotated = cb.isRotated();
       Assert.assertEquals(rotated, isrotated);
     }
-    
+
 }
