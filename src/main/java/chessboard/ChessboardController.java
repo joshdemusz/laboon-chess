@@ -33,6 +33,10 @@ public class ChessboardController implements Initializable
 	private int midMove[] = {-1, -1};
 	private HashMap<Integer, String> piece_images;
 	private boolean rotated;
+	private int moveCount = 0;
+
+	//Stockfish client
+	Stockfish client = new Stockfish();
 
 	// Logical version of the chessboard
 	private Piece logical_board[][];
@@ -172,6 +176,8 @@ public class ChessboardController implements Initializable
 	@Override
 	public void initialize(URL location, ResourceBundle resources)
 	{
+
+		initializeStockfish();
 		// Create HashMap of piece ID --> image url
 		initializePieceImages();
 
@@ -770,8 +776,8 @@ public class ChessboardController implements Initializable
 
 	public void initializeGame(Color uC, Color cC, String d, boolean first_or_second, boolean new_game)
 	{
-		// Set initial game data
-	    setUserColor(uC);
+		moveCount = 0;
+		setUserColor(uC);
 		setPcColor(cC);
 		setDifficulty(d);
         setUsers_turn(first_or_second);
@@ -955,19 +961,114 @@ public class ChessboardController implements Initializable
 
 	public void movePiece(Piece p, int x1, int y1, int x2, int y2)
 	{
-        // Move piece if it is allowed
-		if(p.getColor() != getLastTurnColor())
-		{
-
+		// if(p.getColor() != getLastTurnColor()) {
 			undrawPiece(y1, x1);
 			drawPiece(p, y2, x2);
+			moveCount++;
 			midMove[0] = -1;
 			midMove[1] = -1;
 			logical_board[x2][y2] = logical_board[x1][y1];
 			logical_board[x1][y1] = null;
-			setLastTurnColor(p.getColor());
-		}
+      String FEN = generateFEN();
+			System.out.println(FEN);
+			System.out.println("Getting legal moves...");
+			System.out.println(client.getLegalMoves(FEN));
+			System.out.println("Getting best move...");
+			String bestMove = client.getBestMove(FEN, 10);
+			System.out.println(bestMove);
+			executeBestMove(bestMove);
+			// setLastTurnColor(p.getColor());
+		// }
 
+	}
+
+	public void movePieceComp(Piece p, int x1, int y1, int x2, int y2) {
+			undrawPiece(y1, x1);
+			drawPiece(p, y2, x2);
+			moveCount++;
+			midMove[0] = -1;
+			midMove[1] = -1;
+			logical_board[x2][y2] = logical_board[x1][y1];
+			logical_board[x1][y1] = null;
+	}
+
+	public void executeBestMove(String s) {
+		char[] moveSet = s.toCharArray();
+		int x1 = 0;
+		int x2 = 0;
+		int y1 = 0;
+		int y2 = 0;
+		if(moveSet[0] == 'a') {
+			x1 = 0;
+		}
+		if(moveSet[0] == 'b') {
+			x1 = 1;
+		}
+		if(moveSet[0] == 'c') {
+			x1 = 2;
+		}
+		if(moveSet[0] == 'd') {
+			x1 = 3;
+		}
+		if(moveSet[0] == 'e') {
+			x1 = 4;
+		}
+		if(moveSet[0] == 'f') {
+			x1 = 5;
+		}
+		if(moveSet[0] == 'g') {
+			x1 = 6;
+		}
+		if(moveSet[0] == 'h') {
+			x1 = 7;
+		}
+		y1 = Character.getNumericValue(moveSet[1]);
+		if(moveSet[2] == 'a') {
+			x2 = 0;
+		}
+		if(moveSet[2] == 'b') {
+			x2 = 1;
+		}
+		if(moveSet[2] == 'c') {
+			x2 = 2;
+		}
+		if(moveSet[2] == 'd') {
+			x2 = 3;
+		}
+		if(moveSet[2] == 'e') {
+			x2 = 4;
+		}
+		if(moveSet[2] == 'f') {
+			x2 = 5;
+		}
+		if(moveSet[2] == 'g') {
+			x2 = 6;
+		}
+		if(moveSet[2] == 'h') {
+			x2 = 7;
+		}
+		y2 = Character.getNumericValue(moveSet[3]);
+		y1 = y1-1;
+		y2 = y2-1;
+		x1 = x1;
+		y1 = y1-7;
+		x2 = x2;
+		y2 = y2-7;
+		if(x1<0){x1 *= -1;}
+		if(y1<0){y1 *= -1;}
+		if(x2<0){x2 *= -1;}
+		if(y2<0){y2 *= -1;}
+		System.out.println(x1);
+		System.out.println(y1);
+		System.out.println(x2);
+		System.out.println(y2);
+		Piece p = findPiece(y1, x1);
+		movePieceComp(p,y1,x1,y2,x2);
+	}
+
+	public Piece findPiece(int x1, int y1) {
+		Piece returnPiece = logical_board[x1][y1];
+		return returnPiece;
 	}
 
 	// Replace a piece when one piece overtakes another
@@ -983,6 +1084,14 @@ public class ChessboardController implements Initializable
 			midMove[1] = -1;
 			logical_board[x2][y2] = logical_board[x1][y1];
 			logical_board[x1][y1] = null;
+			String FEN = generateFEN();
+			System.out.println(FEN);
+			System.out.println("Getting legal moves...");
+			System.out.println(client.getLegalMoves(FEN));
+			System.out.println("Getting best move...");
+			String bestMove = client.getBestMove(FEN, 10);
+			System.out.println(bestMove);
+			executeBestMove(bestMove);
 
 			// Add removed piece to graveyard
 			/*if(old.getColor().equalsIgnoreCase("Black"))
@@ -1035,6 +1144,20 @@ public class ChessboardController implements Initializable
 		piece_images.put(10, "src/main/resources/Chess_Board/Chess_Pieces/white_bishop.png");
 		piece_images.put(11, "src/main/resources/Chess_Board/Chess_Pieces/white_knight.png");
 		piece_images.put(12, "src/main/resources/Chess_Board/Chess_Pieces/white_pawn.png");
+	}
+
+	public void initializeStockfish() {
+		if (client.startEngine()) {
+			System.out.println("Engine has started..");
+		} else {
+			System.out.println("Engine did not start.");
+		}
+
+		// send commands manually
+		client.sendCommand("uci");
+
+		// receive output dump
+		System.out.println(client.getOutput(0));
 	}
 
 	public void drawBoard()
@@ -1152,50 +1275,89 @@ public class ChessboardController implements Initializable
 
 	public void clickSpace(int x, int y)
 	{
-        //Don't let the user go twice
-
-
-        if (getUserColor() != getLastTurnColor() && isUsers_turn()) {
-            // Swap x/y since rows and columns are flipped in GridPane
-            // undrawPiece(y, x);
-            //Piece p = new Piece(1, "Black");
-            //drawPiece(p, y, x);
-            if (logical_board[x][y] == null) {
-                //place to move to
-                if (midMove[0] != -1 && midMove[1] != -1) {
-                    //this is the second click that tells us where to move the piece
-                    int initX = midMove[0];
-                    int initY = midMove[1];
-                    Piece toMove = logical_board[initX][initY];
-                    //don't let the user move the computer's pieces
-
-                    if (getUserColor() == toMove.getColor()) {
-                        movePiece(toMove, initX, initY, x, y);
-                        setUsers_turn(false);
-                    }
-                }
-            } else if ((midMove[0] == -1 && logical_board[x][y].getColor() != getPcColor()) || (logical_board[midMove[0]][midMove[1]].getColor() == logical_board[x][y].getColor() && logical_board[x][y].getColor() != getPcColor())) {
-                //Testing ahed when PC makes moves double check if we need the second &&
-                //clicked on a piece, and haven't clicked on anything else
-                //piece to move
-                midMove[0] = x;
-                midMove[1] = y;
-
-
-            } else {
-                //trying to overtake other players piece
-                int initX = midMove[0];
-                int initY = midMove[1];
-                Piece ourPiece = logical_board[initX][initY];
-                Piece theirPiece = logical_board[x][y];
-                //don't let the user move the computer's pieces
-                if (getUserColor() == ourPiece.getColor()) {
-                    replacePiece(theirPiece, ourPiece, initX, initY, x, y);
-                    setUsers_turn(false);
-                }
-            }
-        }
-    }
+		// Swap x/y since rows and columns are flipped in GridPane
+		 // undrawPiece(y, x);
+		 //Piece p = new Piece(1, "Black");
+		 //drawPiece(p, y, x);
+		 if(logical_board[x][y] == null)
+		 {
+			 //place to move to
+			 if(midMove[0] != -1 && midMove[1] != -1){
+				 //this is the second click that tells us where to move the piece
+				 int initX = midMove[0];
+				 int initY = midMove[1];
+				 Piece toMove = logical_board[initX][initY];
+				 movePiece(toMove, initX, initY, x, y);
+			 }
+		 }
+		 else if(midMove[0] == -1 || (logical_board[midMove[0]][midMove[1]].getColor() == logical_board[x][y].getColor()))
+		 {
+			 //clicked on a piece, and haven't clicked on anything else
+			 //piece to move
+			 midMove[0] = x;
+			 midMove[1] = y;
+		 }
+		 else
+						 {
+			 //trying to overtake other players piece
+			 int initX = midMove[0];
+			 int initY = midMove[1];
+			 Piece ourPiece = logical_board[initX][initY];
+			 Piece theirPiece = logical_board[x][y];
+			 replacePiece(theirPiece, ourPiece, initX, initY, x, y);
+		 }
+    // //Don't let the user go twice
+		// if(getUserColor() != getLastTurnColor() && isUsers_turn())
+		// {
+		// 	// Swap x/y since rows and columns are flipped in GridPane
+		// 	// undrawPiece(y, x);
+		// 	//Piece p = new Piece(1, "Black");
+		// 	//drawPiece(p, y, x);
+		// 	if(logical_board[x][y] == null)
+		// 	{
+		// 		//place to move to
+		// 		if(midMove[0] != -1 && midMove[1] != -1){
+		// 			//this is the second click that tells us where to move the piece
+		// 			int initX = midMove[0];
+		// 			int initY = midMove[1];
+		// 			Piece toMove = logical_board[initX][initY];
+    //       //don't let the user move the computer's pieces
+		//
+    //       if(getUserColor() == toMove.getColor())
+    //       {
+		// 			       movePiece(toMove, initX, initY, x, y);
+    //              setUsers_turn(false);
+    //       }
+		// 		}
+		// 	}
+		// 	else if((midMove[0] == -1 && logical_board[x][y].getColor()!=getPcColor())|| (logical_board[midMove[0]][midMove[1]].getColor() == logical_board[x][y].getColor() && logical_board[x][y].getColor()!=getPcColor()))
+		// 	{
+    //     //Testing ahed when PC makes moves double check if we need the second &&
+		// 		//clicked on a piece, and haven't clicked on anything else
+		// 		//piece to move
+    //         midMove[0] = x;
+    //         midMove[1] = y;
+		//
+		//
+		//
+		//
+		// 	}
+		// 	else
+		// 	{
+		// 		//trying to overtake other players piece
+		// 		int initX = midMove[0];
+		// 		int initY = midMove[1];
+		// 		Piece ourPiece = logical_board[initX][initY];
+		// 		Piece theirPiece = logical_board[x][y];
+    //     //don't let the user move the computer's pieces
+    //     if(getUserColor() == ourPiece.getColor())
+    //     {
+		// 		      replacePiece(theirPiece, ourPiece, initX, initY, x, y);
+    //           setUsers_turn(false);
+    //     }
+		// 	}
+		// }
+	}
 
 	//*************************************** GETTERS AND SETTERS *******************************************
 
@@ -1246,6 +1408,102 @@ public class ChessboardController implements Initializable
 	public void setRotated(boolean rotated) {
 		this.rotated = rotated;
 	}
+
+  public String generateFEN() {
+        String returnFEN = "";
+        Integer emptyCount = 0;
+        for(int i = 0 ; i < 8 ; i++) {
+          for(int j = 0 ; j < 8 ; j++) {
+            Piece fenPiece = logical_board[i][j];
+             if (fenPiece == null) {
+               returnFEN += "-";
+            } else {
+              Color pieceColor = fenPiece.getColor();
+              int id = fenPiece.getID();
+              if(pieceColor.equals(userColor)) {
+                if(id == 7) {
+                  returnFEN = returnFEN + "K";
+                }
+                if(id == 8) {
+                  returnFEN = returnFEN + "Q";
+                }
+                if(id == 9) {
+                  returnFEN = returnFEN + "R";
+                }
+                if(id == 10) {
+                  returnFEN = returnFEN + "B";
+                }
+                if(id == 11) {
+                  returnFEN = returnFEN + "N";
+                }
+                if(id == 12) {
+                  returnFEN = returnFEN + "P";
+                }
+              }
+              else if(pieceColor.equals(pcColor)) {
+                if(id == 1) {
+                  returnFEN = returnFEN + "k";
+                }
+                if(id == 2) {
+                  returnFEN = returnFEN + "q";
+                }
+                if(id == 3) {
+                  returnFEN = returnFEN + "r";
+                }
+                if(id == 4) {
+                  returnFEN = returnFEN + "b";
+                }
+                if(id == 5) {
+                  returnFEN = returnFEN + "n";
+                }
+                if(id == 6) {
+                  returnFEN =returnFEN + "p";
+                }
+              }
+            }
+          }
+          returnFEN += "/";
+        }
+
+        System.out.println("returnFEN = " + returnFEN);
+				String returnStr = "";
+				int count = 0;
+				String list = "";
+				String token = "";
+				char[] fenArr = returnFEN.toCharArray();
+				for(int i = 0 ; i < returnFEN.length() ; i++) {
+					if(fenArr[i] != '-') {
+						if(token.length() > 0) {
+							returnStr += list;
+							returnStr += token.length();
+							list = "";
+							token = "";
+						}
+						list += fenArr[i];
+						if(i == returnFEN.length()-2) {
+							returnStr += list;
+						}
+					}
+					else if(fenArr[i] == '-') {
+						token += fenArr[i];
+					}
+				}
+				if(users_turn == false) {
+					returnStr += " w - -";
+				}
+				else if(users_turn == true)  {
+					returnStr += " b - -";
+				}
+				int halfCount = moveCount/2;
+				String halfCountStr = " " + halfCount;
+				String moveCountStr = " " + moveCount;
+				returnStr += halfCountStr;
+				returnStr += moveCountStr;
+				System.out.println("returnStr = " + returnStr);
+        return returnStr;
+      }
+
+
 
 	// The following allows NewGameController.java to access ChessboardController.java and call its methods (in particular initializeGame())
 	private static ChessboardController instance;
