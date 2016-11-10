@@ -27,7 +27,7 @@ public class ChessboardController implements Initializable
 	// Game data
 	private Color userColor;
 	private Color pcColor;
-	private Color lastTurnColor = Color.RED;
+	private Color lastTurnColor;
 	private String difficulty;
 	private boolean users_turn;
 	private int midMove[] = {-1, -1};
@@ -772,6 +772,14 @@ public class ChessboardController implements Initializable
 		setPcColor(cC);
 		setDifficulty(d);
 		setUsers_turn(first_or_second);
+    //makes the last color be the one who is not going first.
+    if(isUsers_turn()){
+          setLastTurnColor(cC);
+    }
+    else{
+      setLastTurnColor(uC);
+    }
+
 
 		// Anything else ?
 
@@ -943,7 +951,7 @@ public class ChessboardController implements Initializable
 
 	public void movePiece(Piece p, int x1, int y1, int x2, int y2)
 	{
-    
+
 		if(p.getColor() != getLastTurnColor()){
 
 			undrawPiece(y1, x1);
