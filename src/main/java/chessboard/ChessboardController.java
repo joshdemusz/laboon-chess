@@ -33,6 +33,7 @@ public class ChessboardController implements Initializable
 	private int midMove[] = {-1, -1};
 	private HashMap<Integer, String> piece_images;
 	private boolean rotated;
+	private int moveCount = 0;
 
 	// Logical version of the chessboard
 	private Piece logical_board[][];
@@ -955,6 +956,7 @@ public class ChessboardController implements Initializable
 		if(p.getColor() != getLastTurnColor()) {
 			undrawPiece(y1, x1);
 			drawPiece(p, y2, x2);
+			moveCount++;
 			midMove[0] = -1;
 			midMove[1] = -1;
 			logical_board[x2][y2] = logical_board[x1][y1];
@@ -1323,6 +1325,17 @@ public class ChessboardController implements Initializable
 						token += fenArr[i];
 					}
 				}
+				if(users_turn == true) {
+					returnStr += " w - -";
+				}
+				else if(users_turn == false)  {
+					returnStr += " b - -";
+				}
+				int halfCount = moveCount/2;
+				String halfCountStr = " " + halfCount;
+				String moveCountStr = " " + moveCount;
+				returnStr += halfCountStr;
+				returnStr += moveCountStr;
 				System.out.println("returnStr = " + returnStr);
         return returnFEN;
       }
