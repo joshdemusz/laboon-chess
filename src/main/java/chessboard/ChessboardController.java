@@ -34,6 +34,7 @@ public class ChessboardController implements Initializable
 	private HashMap<Integer, String> piece_images;
 	private boolean rotated;
 	private int moveCount = 0;
+    private boolean game_started = false;
 
 	//Stockfish client
 	Stockfish client = new Stockfish();
@@ -884,6 +885,7 @@ public class ChessboardController implements Initializable
 		logical_board[1][7] = b_pawn8;
 
         // Draw initial chessboard
+        setGame_started(true);
 		drawBoard();
 	}
 
@@ -911,9 +913,16 @@ public class ChessboardController implements Initializable
 	// Rotate the chessboard is rotate button is pressed
 	public void rotateBoard()
 	{
-		double rotate_angle = 45;
+		// If game has not been started, disable ability to rotate board
+	    if(!game_started)
+        {
+            return;
+        }
 
-		if(!isRotated())
+	    double rotate_angle = 45;
+
+		// Determine which angle board should be rotated to based on if the board was already rotated or not
+        if(!isRotated())
 		{
 			rotate_angle = 180;
 
@@ -1094,15 +1103,6 @@ public class ChessboardController implements Initializable
 			executeBestMove(bestMove);
 
 			// Add removed piece to graveyard
-			/*if(old.getColor().equalsIgnoreCase("Black"))
-        {
-            PCGraveyardController.getInstance().removePiece(old);
-        }
-        else if(old.getColor().equalsIgnoreCase("White"))
-        {
-            UserGraveyardController.getInstance().removePiece(old);
-        }*/
-
 			if(old.getColor().equals(getPcColor()))
 			{
 				PCGraveyardController.getInstance().removePiece(old);
@@ -1115,15 +1115,6 @@ public class ChessboardController implements Initializable
 			setLastTurnColor(curr.getColor());
 
 		}
-	}
-
-	public void removePiece(Piece p, int x, int y)
-	{
-		// Remove from logical board
-
-		// Add to graveyard of correct color
-
-		// "Undraw" the piece from the GridPane
 	}
 
 	// Get locations of chess piece images
@@ -1409,7 +1400,16 @@ public class ChessboardController implements Initializable
 		this.rotated = rotated;
 	}
 
-  public String generateFEN() {
+    public boolean isGame_started() {
+        return game_started;
+    }
+
+    public void setGame_started(boolean game_started) {
+        this.game_started = game_started;
+    }
+
+
+    public String generateFEN() {
         String returnFEN = "";
         Integer emptyCount = 0;
         for(int i = 0 ; i < 8 ; i++) {
