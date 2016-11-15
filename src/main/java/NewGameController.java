@@ -1,5 +1,5 @@
-import chessboard.PCGraveyardController;
 import chessboard.ChessboardController;
+import chessboard.PCGraveyardController;
 import chessboard.UserGraveyardController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,7 +42,7 @@ public class NewGameController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
-        if(Math.random() < 0.5)
+        /*if(Math.random() < 0.5)
         {
             first_or_second = true;
             startingPlayer.setText("User");
@@ -51,7 +51,11 @@ public class NewGameController implements Initializable
         {
             first_or_second = false;
             startingPlayer.setText("PC");
-        }
+        }*/
+
+        // Allow user to always go first for now. PROBABLY CHANGE IN SPRINT 5
+        first_or_second = true;
+        startingPlayer.setText("User");
     }
 
     @FXML
