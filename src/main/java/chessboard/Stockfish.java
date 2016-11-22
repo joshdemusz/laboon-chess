@@ -18,7 +18,7 @@ public class Stockfish {
 	private OutputStreamWriter processWriter;
 
 	private static final String PATH = "src/main/java/chessboard/stockfish-7-64";
-
+	private static final String WINPATH = "src/main/java/chessboard/stockfish-8-x64";
 	/**
 	 * Starts Stockfish engine as a process and initializes it
 	 *
@@ -33,6 +33,17 @@ public class Stockfish {
 			processWriter = new OutputStreamWriter(
 					engineProcess.getOutputStream());
 		} catch (Exception e) {
+			if(processWriter == null){
+				try{
+					engineProcess = Runtime.getRuntime().exec(WINPATH);
+					processReader = new BufferedReader(new InputStreamReader(
+							engineProcess.getInputStream()));
+					processWriter = new OutputStreamWriter(
+							engineProcess.getOutputStream());
+				}catch(Exception f){
+					return false;
+				}
+			}
 			return false;
 		}
 		return true;
