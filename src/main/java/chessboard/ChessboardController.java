@@ -805,6 +805,9 @@ public class ChessboardController implements Initializable
 		{
 			loadGame();
 		}
+
+		// As long as game was loaded properly:
+		KitbitzerController.getInstance().startKitbitzer();
 	}
 
 	// Set the state of a NEW GAME

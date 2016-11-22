@@ -52,31 +52,11 @@
             </Pane>
          </children>
       </HBox>
-      <Pane layoutX="446.0" layoutY="73.0" maxHeight="550.0" maxWidth="550.0" prefHeight="550.0" prefWidth="550.0">
+      <Pane layoutX="448.0" layoutY="88.0" maxHeight="550.0" maxWidth="550.0" prefHeight="550.0" prefWidth="550.0">
          <children>
             <fx:include source="Chess_Board/Chessboard.fxml" />
          </children>
       </Pane>
-
-      <HBox layoutX="623.0" prefHeight="88.0" prefWidth="200.0">
-         <children>
-            <Label prefHeight="86.0" prefWidth="92.0" text="00">
-               <font>
-                  <Font size="64.0" />
-               </font>
-            </Label>
-            <Label prefHeight="86.0" prefWidth="19.0" text=":">
-               <font>
-                  <Font size="64.0" />
-               </font>
-            </Label>
-            <Label prefHeight="86.0" prefWidth="103.0" text="00">
-               <font>
-                  <Font size="64.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
       <Pane layoutX="162.0" layoutY="103.0" prefHeight="518.0" prefWidth="164.0">
          <children>
             <fx:include source="UserGraveyard.fxml" />
@@ -85,6 +65,11 @@
       <Pane layoutX="1121.0" layoutY="104.0" prefHeight="518.0" prefWidth="164.0">
          <children>
             <fx:include source="PCGraveyard.fxml" />
+         </children>
+      </Pane>
+      <Pane fx:id="Kitbitzer_box" layoutX="530.0" layoutY="6.0" prefHeight="69.0" prefWidth="390.0">
+         <children>
+            <fx:include source="Kitbitzer.fxml" />
          </children>
       </Pane>
       
