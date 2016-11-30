@@ -8,7 +8,6 @@ out/
 *.iws
 /.idea/
 # ignore gradle file
- /.gradle/
  gradle/
 gradlew
 gradlew.bat
@@ -16,5 +15,5 @@ gradlew.bat
 .gradle/*
 
 
-#ignore system files
+#ignore system filesgit 
 .DS_Store
