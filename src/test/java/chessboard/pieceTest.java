@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
  */
 public class pieceTest {
     @Test
-    public void getID_test() throws Exception {
+    public void getIdTest() throws Exception {
         // tests getID
     	int testNumber = 4;
     	Piece testPiece = new Piece(testNumber, Color.WHITE);
@@ -16,7 +16,7 @@ public class pieceTest {
       Assert.assertEquals((double)testNumber, (double)resultValue,(double)0);
     }
     @Test
-    public void setID_test(){
+    public void setIdTest(){
         //tests the setID method
         int testNumber = 10;
         int initNumber = 4;
@@ -26,7 +26,7 @@ public class pieceTest {
         Assert.assertEquals(testNumber, getNum);
     }
     @Test
-    public void getColor_test(){
+    public void getColorTest(){
         // tests getColor method
     	Color testColor = Color.WHITE;
     	Piece testPiece = new Piece(0,testColor);
@@ -34,7 +34,7 @@ public class pieceTest {
     	Assert.assertEquals(testColor,result);
     }
     @Test
-    public void setColor_test(){
+    public void setColorTest(){
         // tests getColor method
         Color initColor = Color.BLACK;
     	Color testColor = Color.WHITE;
@@ -44,7 +44,7 @@ public class pieceTest {
     	Assert.assertEquals(testColor,resultColor);
     }
     @Test
-    public void getIn_play_test1(){
+    public void getInPlayTest1(){
         //tests getIn_play and setIn_play methods
     	boolean testBoolean = true;
     	Piece testPiece = new Piece(0,Color.BLACK);
@@ -53,7 +53,7 @@ public class pieceTest {
     	Assert.assertEquals(true,resultBool);
     }
     @Test
-    public void getIn_play_test2(){
+    public void getInPlayTest2(){
         //tests getIn_play and setIn_play methods
      	boolean testBoolean = false;
     	Piece testPiece = new Piece(0,Color.BLACK);

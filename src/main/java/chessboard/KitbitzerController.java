@@ -128,7 +128,7 @@ public class KitbitzerController implements Initializable
                     });
                     //kitbitzer_label.setText(random_comment);
 
-                    System.out.println("Change label");
+                   // System.out.println("Change label");
                 }
             } catch (InterruptedException e)
             {

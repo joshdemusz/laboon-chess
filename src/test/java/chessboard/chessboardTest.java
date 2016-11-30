@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
 public class chessboardTest {
 
     @Test
-    public void lastTurnColor_test(){
+    public void lastTurnColorTest(){
       //tests the getLastTurnColor
       ChessboardController cb = new ChessboardController();
       Color color_expected=Color.WHITE;
@@ -19,7 +19,7 @@ public class chessboardTest {
     }
 
     @Test
-    public void white_getUserColor_test(){
+    public void whiteGetUserColorTest(){
       //tests the getUserColor and setUserColor methods
       ChessboardController cb = new ChessboardController();
       Color color_expected=Color.WHITE;
@@ -29,7 +29,7 @@ public class chessboardTest {
     }
 
     @Test
-    public void black_getUserColor_test(){
+    public void blackGetUserColorTest(){
       //tests the getUserColor and setUserColor methods
       ChessboardController cb = new ChessboardController();
       Color color_expected=Color.BLACK;
@@ -39,7 +39,7 @@ public class chessboardTest {
     }
 
     @Test
-    public void white_getPCColor_test(){
+    public void whiteGetPCColorTest(){
       //tests the getPcColor and setPcColor methods
       ChessboardController cb = new ChessboardController();
       Color color_expected=Color.WHITE;
@@ -49,7 +49,7 @@ public class chessboardTest {
     }
 
     @Test
-    public void black_getPCColor_test(){
+    public void blackGetPcColorTest(){
       //tests the getPcColor and setPcColor methods
       ChessboardController cb = new ChessboardController();
       Color color_expected=Color.BLACK;
@@ -59,7 +59,7 @@ public class chessboardTest {
     }
 
     @Test
-    public void getDifficulty_test(){
+    public void getDifficultyTest(){
       //Tests the getDifficulty and setDifficulty methods
       ChessboardController cb = new ChessboardController();
       String difficulty_expected="easy";
@@ -69,7 +69,7 @@ public class chessboardTest {
     }
 
     @Test
-    public void true_isUsers_turn_test(){
+    public void trueIsUsersTurnTest(){
       //Tests isUsers_turn and setUsers_turn methods
       ChessboardController cb = new ChessboardController();
       boolean users_turn_expected=true;
@@ -79,7 +79,7 @@ public class chessboardTest {
     }
 
     @Test
-    public void false_isUsers_turn_test(){
+    public void falseIsUsersTurnTest(){
       //Tests isUsers_turn and setUsers_turn methods
       ChessboardController cb = new ChessboardController();
       boolean users_turn_expected=false;
@@ -89,7 +89,7 @@ public class chessboardTest {
     }
 
     @Test
-    public void getInstance_test(){
+    public void getInstanceTest(){
       //Tests ChessboardController and getInstance
       ChessboardController cb = new ChessboardController();
       ChessboardController cb2= new ChessboardController();
@@ -97,7 +97,7 @@ public class chessboardTest {
     }
 
     @Test
-    public void getRotated_test_true(){
+    public void getRotatedTestTrue(){
       //tests setRotated and isRotated methods
       ChessboardController cb = new ChessboardController();
       boolean rotated = true;
@@ -106,7 +106,7 @@ public class chessboardTest {
       Assert.assertEquals(rotated, isrotated);
     }
     @Test
-    public void getRotated_test_false(){
+    public void getRotatedTestFalse(){
       //tests setRotated and isRotated methods
       ChessboardController cb = new ChessboardController();
       boolean rotated = false;
