@@ -5,8 +5,15 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.*;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.*;
 
 import java.io.File;
@@ -16,6 +23,9 @@ import java.io.IOException;
 
 public class MainController extends Application
 {
+    @FXML
+    private Button quitButton;
+    private Stage primaryStage;
     private boolean gameStarted = false;
     private boolean gameSaved = false;
     public static void main(String[] args) {
@@ -24,14 +34,60 @@ public class MainController extends Application
 
     @Override // Override the start method in the Application class
     public void start(Stage primaryStage) {
-        //Platform.setImplicitExit(false); //stops the user from closing with the x in upper right
+        Platform.setImplicitExit(false); //stops the user from closing with the x in upper right
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("Skeleton.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event){
+                final Stage dialog = new Stage();
+                dialog.initModality(Modality.APPLICATION_MODAL);
+                Label label = new Label("Are you sure you want to quit?");
 
+                Button okButton = new Button("Yes");
+                okButton.setOnAction(new EventHandler<ActionEvent>() {
+
+                    public void handle(ActionEvent actionEvent) {
+                        dialog.hide();
+                    }
+                });
+                Button cancelButton = new Button("Cancel");
+                cancelButton.setOnAction(new EventHandler<ActionEvent>() {
+
+                    public void handle(ActionEvent actionEvent) {
+                        primaryStage.show();
+                        dialog.hide();
+                    }
+                });
+                Button saveButton = new Button("Save");
+                saveButton.setOnAction(new EventHandler<ActionEvent>() {
+
+                    public void handle(ActionEvent actionEvent) {
+                        dialog.hide();
+                        saveGame();
+                    }
+                });
+                FlowPane pane = new FlowPane(10,10);
+                pane.setAlignment(Pos.CENTER);
+                if(gameStarted && !gameSaved){
+                    pane.getChildren().addAll(okButton,saveButton,cancelButton);
+                }else if(gameStarted && gameSaved){
+                    pane.getChildren().addAll(okButton,cancelButton);
+                }else {
+                    quitGame();
+                }
+                VBox vBox = new VBox(10);
+                vBox.setAlignment(Pos.CENTER);
+                vBox.getChildren().addAll(label,pane);
+                Scene closeScene = new Scene(vBox);
+                dialog.setScene(closeScene);
+                dialog.showAndWait();
+            }
+        });
         // Create a button and place it in the scene
         Scene scene = new Scene(root, 1200, 1200);
         primaryStage.setTitle("laboon-chess"); // Set the stage title
@@ -92,26 +148,10 @@ public class MainController extends Application
     @FXML
     public void quitGame() throws IOException //Handles the three cases of when a user attempts to quit.
     {
-        if(!gameSaved && gameStarted){ //Didnt save before trying to exit.
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Dialog_Windows/QuitWithoutSaving.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("Save before Quitting?");
-            stage.setScene(new Scene(root1));
-            stage.show();
-        }
-        else{
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Dialog_Windows/QuitWithSaveOrNoGame.fxml"));
-            Parent root1 = (Parent) fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setTitle("Save before Quitting?");
-            stage.setScene(new Scene(root1));
-            stage.show();
-            System.exit(0);
-        }
+        Stage stage = (Stage) quitButton.getScene().getWindow();
+        stage.close();
     }
+
+
+
 }
