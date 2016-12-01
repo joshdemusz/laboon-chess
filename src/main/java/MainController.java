@@ -25,7 +25,7 @@ public class MainController extends Application
 {
     @FXML
     private Button quitButton;
-    private Stage primaryStage;
+
     private boolean gameStarted = false;
     private boolean gameSaved = false;
     public static void main(String[] args) {
@@ -53,33 +53,22 @@ public class MainController extends Application
 
                     public void handle(ActionEvent actionEvent) {
                         dialog.hide();
+                        Platform.exit();
+                        System.exit(0);
                     }
                 });
-                Button cancelButton = new Button("Cancel");
+                Button cancelButton = new Button("No");
                 cancelButton.setOnAction(new EventHandler<ActionEvent>() {
 
                     public void handle(ActionEvent actionEvent) {
                         primaryStage.show();
                         dialog.hide();
-                    }
-                });
-                Button saveButton = new Button("Save");
-                saveButton.setOnAction(new EventHandler<ActionEvent>() {
-
-                    public void handle(ActionEvent actionEvent) {
-                        dialog.hide();
-                        saveGame();
+                        event.consume();
                     }
                 });
                 FlowPane pane = new FlowPane(10,10);
                 pane.setAlignment(Pos.CENTER);
-                if(gameStarted && !gameSaved){
-                    pane.getChildren().addAll(okButton,saveButton,cancelButton);
-                }else if(gameStarted && gameSaved){
-                    pane.getChildren().addAll(okButton,cancelButton);
-                }else {
-                    quitGame();
-                }
+                pane.getChildren().addAll(okButton,cancelButton);
                 VBox vBox = new VBox(10);
                 vBox.setAlignment(Pos.CENTER);
                 vBox.getChildren().addAll(label,pane);
@@ -102,6 +91,7 @@ public class MainController extends Application
     @FXML
     public void startNewGame(ActionEvent actionEvent) throws IOException
     {
+        gameStarted = true;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Dialog_Windows/NewGameDialog.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
         Stage stage = new Stage();
@@ -110,7 +100,6 @@ public class MainController extends Application
         stage.setTitle("Start a New Game");
         stage.setScene(new Scene(root1));
         stage.show();
-        gameStarted = true;
     }
 
     public void rotateBoard()
@@ -121,8 +110,15 @@ public class MainController extends Application
     @FXML
     public void saveGame() //Saves Game if game has been started.
     {
+        if(!gameStarted){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "There is nothing to save until you you start a new game!");
+            alert.setTitle("Alert!");
+            alert.setHeaderText("Invalid selection");
+            alert.showAndWait();
+            return;
+        }
         FileChooser saveChooser = new FileChooser(); //Creates a FileChooser which will use the systems file browser.
-        saveChooser.setTitle("Load Game");
+        saveChooser.setTitle("Save Game");
         File save = saveChooser.showSaveDialog(new Stage());
         if(save != null){
             try {
@@ -148,8 +144,19 @@ public class MainController extends Application
     @FXML
     public void quitGame() throws IOException //Handles the three cases of when a user attempts to quit.
     {
-        Stage stage = (Stage) quitButton.getScene().getWindow();
-        stage.close();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Close application");
+        String s = "Are you sure you want to quit?";
+        alert.setContentText(s);
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
+            Stage stage = (Stage) quitButton.getScene().getWindow();
+            stage.close();
+            Platform.exit();
+            System.exit(0);
+        }
     }
 
 
