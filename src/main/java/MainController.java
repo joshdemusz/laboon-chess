@@ -144,21 +144,35 @@ public class MainController extends Application
     @FXML
     public void quitGame() throws IOException //Handles the three cases of when a user attempts to quit.
     {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Close application");
-        String s = "Are you sure you want to quit?";
-        alert.setContentText(s);
+                final Stage dialog = new Stage();
+                dialog.initModality(Modality.APPLICATION_MODAL);
+                Label label = new Label("Are you sure you want to quit?");
+                Button okButton = new Button("Yes");
+                okButton.setOnAction(new EventHandler<ActionEvent>() {
 
-        Optional<ButtonType> result = alert.showAndWait();
+                    public void handle(ActionEvent actionEvent) {
+                        dialog.hide();
+                        Platform.exit();
+                        System.exit(0);
+                    }
+                });
+                Button cancelButton = new Button("No");
+                cancelButton.setOnAction(new EventHandler<ActionEvent>() {
 
-        if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
-            Stage stage = (Stage) quitButton.getScene().getWindow();
-            stage.close();
-            Platform.exit();
-            System.exit(0);
-        }
-    }
-
-
-
+                    public void handle(ActionEvent actionEvent) {
+                        Stage stage = (Stage) quitButton.getScene().getWindow();
+                        dialog.hide();
+                        actionEvent.consume();
+                    }
+                });
+                FlowPane pane = new FlowPane(10,10);
+                pane.setAlignment(Pos.CENTER);
+                pane.getChildren().addAll(okButton,cancelButton);
+                VBox vBox = new VBox(10);
+                vBox.setAlignment(Pos.CENTER);
+                vBox.getChildren().addAll(label,pane);
+                Scene closeScene = new Scene(vBox);
+                dialog.setScene(closeScene);
+                dialog.showAndWait();
+            }
 }
