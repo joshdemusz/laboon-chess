@@ -6,12 +6,14 @@ out/
 *.iml
 *.ipr
 *.iws
-
+/.idea/
 # ignore gradle file
- .gradle/
  gradle/
 gradlew
 gradlew.bat
+/classes/
+.gradle/*
 
-#ignore system files
+
+#ignore system filesgit 
 .DS_Store

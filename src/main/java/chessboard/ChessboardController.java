@@ -35,7 +35,8 @@ public class ChessboardController implements Initializable
 	private boolean rotated;
 	private int moveCount = 0;
     private boolean game_started = false;
-
+	//FEN string builder for saving game.
+	private StringBuilder saveBuilder = new StringBuilder();
 	//Stockfish client
 	Stockfish client = new Stockfish();
 
@@ -779,7 +780,11 @@ public class ChessboardController implements Initializable
 	{
 		moveCount = 0;
 		setUserColor(uC);
+		saveBuilder.append(uC.hashCode());
+		saveBuilder.append("\n");
 		setPcColor(cC);
+		saveBuilder.append(cC.hashCode());
+		saveBuilder.append("\n");
 		setDifficulty(d);
         setUsers_turn(first_or_second);
 
@@ -981,7 +986,10 @@ public class ChessboardController implements Initializable
 			midMove[1] = -1;
 			logical_board[x2][y2] = logical_board[x1][y1];
 			logical_board[x1][y1] = null;
-      String FEN = generateFEN();
+		String FEN = generateFEN();
+		saveBuilder.append(FEN);
+		saveBuilder.append("\n");
+
 			System.out.println(FEN);
 			System.out.println("Getting legal moves...");
 			System.out.println(client.getLegalMoves(FEN));
@@ -1410,6 +1418,11 @@ public class ChessboardController implements Initializable
     public void setGame_started(boolean game_started) {
         this.game_started = game_started;
     }
+
+    public StringBuilder getSave(){
+
+		return saveBuilder;
+	}
 
 
     public String generateFEN() {
