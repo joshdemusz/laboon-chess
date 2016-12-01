@@ -186,7 +186,7 @@ public class ChessboardController implements Initializable
 		ArrayList<Pane> cells = new ArrayList<Pane>();
 
 		// Add cells to chessboard
-        cells.add(cell0x0);
+    cells.add(cell0x0);
 		cells.add(cell0x1);
 		cells.add(cell0x2);
 		cells.add(cell0x3);
@@ -765,15 +765,7 @@ public class ChessboardController implements Initializable
 			}
 		});
 
-		/*cell0x0.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>()
-        {
-            @Override
-            public void handle(MouseEvent e)
-            {
-                        //virtual_board.getChildren().clear();
-                        undrawPiece(0, 0);
-            }
-        });*/
+
 	}
 
 	public void initializeGame(Color uC, Color cC, String d, boolean first_or_second, boolean new_game)
@@ -798,10 +790,7 @@ public class ChessboardController implements Initializable
             setLastTurnColor(uC);
         }
 
-
-        // Anything else ?
-
-        // Set up game
+    // Set up game
 		if(new_game)
 		{
 			newGame();
@@ -892,8 +881,8 @@ public class ChessboardController implements Initializable
 		logical_board[1][6] = b_pawn7;
 		logical_board[1][7] = b_pawn8;
 
-        // Draw initial chessboard
-        setGame_started(true);
+    // Draw initial chessboard
+    setGame_started(true);
 		drawBoard();
 	}
 
@@ -978,7 +967,7 @@ public class ChessboardController implements Initializable
 
 	public void movePiece(Piece p, int x1, int y1, int x2, int y2)
 	{
-		// if(p.getColor() != getLastTurnColor()) {
+
 			undrawPiece(y1, x1);
 			drawPiece(p, y2, x2);
 			moveCount++;
@@ -997,8 +986,7 @@ public class ChessboardController implements Initializable
 			String bestMove = client.getBestMove(FEN, 10);
 			System.out.println(bestMove);
 			executeBestMove(bestMove);
-			// setLastTurnColor(p.getColor());
-		// }
+
 
 	}
 
@@ -1278,9 +1266,7 @@ public class ChessboardController implements Initializable
 	public void clickSpace(int x, int y)
 	{
 		// Swap x/y since rows and columns are flipped in GridPane
-		 // undrawPiece(y, x);
-		 //Piece p = new Piece(1, "Black");
-		 //drawPiece(p, y, x);
+
 		 if(logical_board[x][y] == null)
 		 {
 			 //place to move to
@@ -1308,57 +1294,7 @@ public class ChessboardController implements Initializable
 			 Piece theirPiece = logical_board[x][y];
 			 replacePiece(theirPiece, ourPiece, initX, initY, x, y);
 		 }
-    // //Don't let the user go twice
-		// if(getUserColor() != getLastTurnColor() && isUsers_turn())
-		// {
-		// 	// Swap x/y since rows and columns are flipped in GridPane
-		// 	// undrawPiece(y, x);
-		// 	//Piece p = new Piece(1, "Black");
-		// 	//drawPiece(p, y, x);
-		// 	if(logical_board[x][y] == null)
-		// 	{
-		// 		//place to move to
-		// 		if(midMove[0] != -1 && midMove[1] != -1){
-		// 			//this is the second click that tells us where to move the piece
-		// 			int initX = midMove[0];
-		// 			int initY = midMove[1];
-		// 			Piece toMove = logical_board[initX][initY];
-    //       //don't let the user move the computer's pieces
-		//
-    //       if(getUserColor() == toMove.getColor())
-    //       {
-		// 			       movePiece(toMove, initX, initY, x, y);
-    //              setUsers_turn(false);
-    //       }
-		// 		}
-		// 	}
-		// 	else if((midMove[0] == -1 && logical_board[x][y].getColor()!=getPcColor())|| (logical_board[midMove[0]][midMove[1]].getColor() == logical_board[x][y].getColor() && logical_board[x][y].getColor()!=getPcColor()))
-		// 	{
-    //     //Testing ahed when PC makes moves double check if we need the second &&
-		// 		//clicked on a piece, and haven't clicked on anything else
-		// 		//piece to move
-    //         midMove[0] = x;
-    //         midMove[1] = y;
-		//
-		//
-		//
-		//
-		// 	}
-		// 	else
-		// 	{
-		// 		//trying to overtake other players piece
-		// 		int initX = midMove[0];
-		// 		int initY = midMove[1];
-		// 		Piece ourPiece = logical_board[initX][initY];
-		// 		Piece theirPiece = logical_board[x][y];
-    //     //don't let the user move the computer's pieces
-    //     if(getUserColor() == ourPiece.getColor())
-    //     {
-		// 		      replacePiece(theirPiece, ourPiece, initX, initY, x, y);
-    //           setUsers_turn(false);
-    //     }
-		// 	}
-		// }
+
 	}
 
 	//*************************************** GETTERS AND SETTERS *******************************************
