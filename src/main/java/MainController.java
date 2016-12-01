@@ -123,7 +123,8 @@ public class MainController extends Application
         if(save != null){
             try {
                 FileWriter fileWriter = new FileWriter(save);
-                fileWriter.write(new String("HI!")); //Wil replace this with something actually interesting.
+                //fileWriter.write(ChessboardController.getInstance().)
+                fileWriter.write(ChessboardController.getInstance().generateFEN()); //Wil replace this with something actually interesting.
                 fileWriter.close();
                 gameSaved = true;
             } catch(IOException e){
