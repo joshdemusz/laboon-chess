@@ -780,7 +780,11 @@ public class ChessboardController implements Initializable
 	{
 		moveCount = 0;
 		setUserColor(uC);
+		saveBuilder.append(uC.hashCode());
+		saveBuilder.append("\n");
 		setPcColor(cC);
+		saveBuilder.append(cC.hashCode());
+		saveBuilder.append("\n");
 		setDifficulty(d);
         setUsers_turn(first_or_second);
 
@@ -1415,10 +1419,9 @@ public class ChessboardController implements Initializable
         this.game_started = game_started;
     }
 
-    public String getSave(){
-		String userColor = new StringBuilder(getUserColor().hashCode()).toString();
-		String pcColor = new StringBuilder(getPcColor().hashCode()).toString();
-		return userColor + "\n" + pcColor + "\n" + saveBuilder.toString();
+    public StringBuilder getSave(){
+
+		return saveBuilder;
 	}
 
 

@@ -38,7 +38,7 @@
             </Pane>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="quitButton" layoutX="18.0" layoutY="42.0" mnemonicParsing="false" onMouseClicked="#quitGame" prefHeight="58.0" prefWidth="157.0" text="Quit">
+                  <Button fx:id="quitButton" cancelButton="true" layoutX="18.0" layoutY="42.0" mnemonicParsing="false" onAction="#quitGame" prefHeight="58.0" prefWidth="157.0" text="Quit">
                      <font>
                         <Font size="24.0" />
                      </font>
