@@ -1416,8 +1416,8 @@ public class ChessboardController implements Initializable
     }
 
     public String getSave(){
-		String userColor = new String(getUserColor().hashCode());
-		String pcColor = new String(getPcColor().hashCode());
+		String userColor = new StringBuilder(getUserColor().hashCode()).toString();
+		String pcColor = new StringBuilder(getPcColor().hashCode()).toString();
 		return userColor + "\n" + pcColor + "\n" + saveBuilder.toString();
 	}
 

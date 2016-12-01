@@ -123,12 +123,12 @@ public class MainController extends Application
         if(save != null){
             try {
                 FileWriter fileWriter = new FileWriter(save);
-                //fileWriter.write(ChessboardController.getInstance().)
-                fileWriter.write(ChessboardController.getInstance().generateFEN()); //Wil replace this with something actually interesting.
+                fileWriter.write(ChessboardController.getInstance().getSave()); //Prints out the Fen strings for a save game
                 fileWriter.close();
                 gameSaved = true;
             } catch(IOException e){
                 System.out.println("Error in saveGame()");
+                e.printStackTrace();
             }
         }
     }
